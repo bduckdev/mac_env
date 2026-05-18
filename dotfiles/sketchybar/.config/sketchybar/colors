@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+export BLACK=0xff16181a
+export WHITE=0xffffffff
+export RED=0xffff6e5e
+export GREEN=0xff5eff6c
+export YELLOW=0xfff1ff5e
+export BLUE=0xff5ea1ff
+export PURPLE=0xffbd5eff
+export ORANGE=0xffffbd6e
+export CYAN=0xff5ef1ff
+
