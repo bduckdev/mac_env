@@ -24,7 +24,6 @@ homebrew_packages:
   - docker-compose
   - go
   - node
-  - npm
   - python
   - uv
 
