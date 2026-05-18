@@ -1,0 +1,54 @@
+homebrew_packages:
+  - television
+  - git
+  - ansible
+  - stow
+  - tmux
+  - neovim
+  - fzf
+  - ripgrep
+  - fd
+  - jq
+  - yq
+  - bat
+  - eza
+  - zoxide
+  - direnv
+  - tree
+  - wget
+  - htop
+  - colima
+  - lsd
+  - lazygit
+  - docker
+  - docker-compose
+  - go
+  - node
+  - npm
+  - python
+  - uv
+
+homebrew_casks:
+  - ghostty
+  - borders
+  - sketchybar
+  - wezterm
+  - google-chrome
+  - aerospace
+
+fonts:
+  - font-jetbrains-mono-nerd-font
+
+stow_packages:
+  - zsh
+  - tmux
+  - nvim
+  - wezterm
+  - aerospace
+  - scripts
+  - sketchybar
+
+work_dirs:
+  - "{{ ansible_env.HOME }}/Work"
+  - "{{ ansible_env.HOME }}/.config"
+  - "{{ ansible_env.HOME }}/.ssh"

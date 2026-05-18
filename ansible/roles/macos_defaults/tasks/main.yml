@@ -1,0 +1,39 @@
+- name: Set fast key repeat
+  command: defaults write NSGlobalDomain KeyRepeat -int 2
+
+- name: Set short initial key repeat delay
+  command: defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+- name: Disable press-and-hold accents
+  command: defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+- name: Show hidden files in Finder
+  command: defaults write com.apple.finder AppleShowAllFiles -bool true
+
+- name: Show Finder path bar
+  command: defaults write com.apple.finder ShowPathbar -bool true
+
+- name: Show Finder status bar
+  command: defaults write com.apple.finder ShowStatusBar -bool true
+
+- name: Autohide Dock
+  command: defaults write com.apple.dock autohide -bool true
+
+- name: Dock autohide-delay
+  command: defaults write com.apple.dock autohide-delay -float 10
+
+- name: Dock autohide-time-modifier
+  command: defaults write com.apple.dock autohide-time-modifier -float 0
+
+- name: Disable recent apps in Dock
+  command: defaults write com.apple.dock show-recents -bool false
+
+- name: Restart Dock
+  command: killall Dock
+  changed_when: false
+  failed_when: false
+
+- name: Restart Finder
+  command: killall Finder
+  changed_when: false
+  failed_when: false
