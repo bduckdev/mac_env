@@ -4,7 +4,7 @@
     state: present
 
 - name: stow dotfiles
-  command: "stow --restow {{ item }}"
+  command: "stow -v -R -t ~ {{ item }}"
   args:
     chdir: "{{ playbook_dir }}/../dotfiles"
   loop: "{{ stow_packages }}"
