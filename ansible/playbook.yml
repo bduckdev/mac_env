@@ -8,6 +8,7 @@
 
   roles:
     - dirs
+    - taps
     - homebrew
     - casks
     - fonts
