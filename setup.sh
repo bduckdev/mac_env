@@ -5,6 +5,6 @@ xcode-select --install
 brew install ansible git
 git clone git@github.com:bduckdev/mac_env.git
 cd mac_env
-ansible-playbook local.yml --ask-become-pass
+ansible-playbook ./ansible/playbook.yml --ask-become-pass
 
 

@@ -41,6 +41,7 @@ fonts:
 
 stow_packages:
   - zsh
+  - borders
   - tmux
   - nvim
   - wezterm
