@@ -1,5 +1,6 @@
 homebrew_taps:
   - FelixKratz/formulae
+  - nikitabobko/tap
 
 homebrew_packages:
   - television
