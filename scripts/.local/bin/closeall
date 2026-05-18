@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+for app in $(osascript -e 'tell application "System Events" to get name of (every process whose background only is false)' | tr ',' '\n'); do
+  if [[ "$app" != "Finder" && "$app" != "System Events" && "$app" != "Dock" && "$app" != "WezTerm" && "$app" != "wezterm-gui"  ]]; then
+    killall "$app" 2>/dev/null
+  fi
+done&

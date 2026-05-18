@@ -1,0 +1,41 @@
+#!/bin/bash
+
+pactl set-sink-volume @DEFAULT_SINK@ 50%
+if lsusb | grep "2708:0002"; then
+	pactl set-sink-volume @DEFAULT_SINK@ 100%
+fi
+picom -b --experimental-backends
+
+if xrandr | grep 'DP-2 connected'; then
+	sleep 1
+	i3 'workspace 1; exec brave-browser; exec wezterm;'
+	sleep 1
+	i3 'workspace 2; exec brave-browser; exec wezterm;'
+	sleep 1
+	i3 'workspace 3; exec spotify; exec pavucontrol'
+	sleep 1
+	i3 'workspace 4; exec telegram-desktop; exec signal-desktop'
+	sleep 1
+	i3 'workspace 5; exec discord; exec wezterm'
+	sleep 1
+	i3 workspace 1
+	sleep 1
+else
+	brightnessctl -c set "50%"
+	sleep 1
+	i3 'workspace 1; exec wezterm'
+	sleep 1
+	i3 'workspace 2; exec brave-browser'
+	sleep 1
+	i3 'workspace 3; exec spotify'
+	sleep 1
+	i3 'workspace 4; exec telegram-desktop; exec signal-desktop'
+	sleep 1
+	discord
+	sleep 1
+	i3 workspace 1
+	sleep 1
+
+fi
+
+#~/.dotfiles/polybar/.config/polybar/launch.sh

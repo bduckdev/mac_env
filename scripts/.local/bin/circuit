@@ -1,0 +1,16 @@
+#!/bin/bash
+
+spd-say "get ready"
+timer 0.25
+
+declare -i i=1
+
+while [ $i -lt 5 ]; do
+	sleep 5ms
+	spd-say "circuit number $i"
+	timer 2.5
+	spd-say "break"
+	timer 0.5
+	spd-say "end break"
+	i=$((i + 1))
+done

@@ -1,0 +1,39 @@
+#!/usr/bin/env zsh
+
+# launch apps
+apps=(
+  "Calendar"
+  "Reminders"
+  "Safari"
+  "Spotify"
+)
+
+for app in "${apps[@]}"; do
+  open -gj -a "$app"
+done
+
+# set aerospace layouts
+typeset -A spaces=(
+  1  "v_accordion"
+  2  "v_accordion"
+  3  "h_tiles"
+  4  "v_accordion"
+  5  "v_accordion"
+  6  "v_accordion"
+  10 "h_tiles"
+)
+
+wait_ws() {
+  for _ in {1..30}; do
+    (( $(aerospace list-windows --workspace "$1" --count 2>/dev/null) > 0 )) && return
+    sleep 0.1
+  done
+}
+
+for ws layout in ${(kv)spaces}; do
+  wait_ws $ws
+  win_id=$(aerospace list-windows --workspace $ws | head -n1 | awk -F'|' '{gsub(/ /,"",$1);print $1}')
+  [[ -n $win_id ]] && aerospace layout --window-id $win_id $layout >/dev/null
+done
+
+aerospace workspace 3

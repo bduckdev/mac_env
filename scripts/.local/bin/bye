@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+figlet "k thx bye" | lolcat
+chafa ~/Pictures/cat_no-bg.png
+sleep 1
+~/.local/bin/closeall
+#osascript -e "tell app \"System Events\" to shut down"
+sudo /sbin/shutdown -h now

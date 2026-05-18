@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+# script for adjusting top gap to accomodate simplebar.
+IS_UNDOCKED=$(system_profiler SPDisplaysDataType | grep "Retina")
+UNDOCKED_GAP=15
+DOCKED_GAP=50
+
+if [[ $IS_UNDOCKED ]]; then
+    sed -i '' "s/outer\.top = .*/outer.top = "$UNDOCKED_GAP"/g" ~/.dotfiles/aerospace/.aerospace.toml
+else
+    sed -i '' "s/outer\.top = .*/outer.top = "$DOCKED_GAP"/g" ~/.dotfiles/aerospace/.aerospace.toml
+fi
+
+/opt/homebrew/bin/aerospace reload-config

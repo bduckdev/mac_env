@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+session=$(find ~ ~/School ~/Personal ~/Work ~/.dotfiles ~/Playground -mindepth 1 -maxdepth 1 -type d | tv --preview-command 'tree -C {} | head -n 10')
+
+session_name=$(basename "$session" | tr . _)
+
+if ! tmux has-session -t "$session_name" 2>/dev/null; then
+	tmux new-session -s "$session_name" -c "$session" -d
+fi
+
+tmux switch-client -t "$session_name"

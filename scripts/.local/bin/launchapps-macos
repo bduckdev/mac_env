@@ -1,0 +1,35 @@
+#!/usr/bin/env zsh
+
+apps=(
+    "Calendar"
+    "Reminders"
+    "ChatGPT"
+    "Arc"
+    "Safari"
+    "Messages"
+    "Telegram"
+    "RemNote"
+    "Spotify"
+    "Goodnotes"
+    "Slack"
+)
+
+for app in $apps; do
+    open -gja "$app"
+done
+
+is_running() {
+    pgrep -x "$1" >/dev/null 2>&1
+}
+
+for app in $apps; do
+    {
+    until is_running "$app"; do
+        sleep 2.5;
+    done
+    }&
+done
+
+wait
+
+

@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+osascript -e 'tell application "System Events" to set autohide menu bar of dock preferences to true'
+
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 1000
+defaults write com.apple.dock autohide-time-modifier -float 0
+killall Dock
