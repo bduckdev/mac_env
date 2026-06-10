@@ -2,6 +2,9 @@
 	email = brennantduck@gmail.com
 	name = Brennan Duck
 
+[includeIf "gitdir:~/Work/"]
+    path = ~/.gitconfig-work
+
 [core]
     pager = delta
 
