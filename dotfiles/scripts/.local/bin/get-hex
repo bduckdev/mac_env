@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# get-hex: convert a percentage (0-100) to a 2-digit hex alpha value
+# usage: ./get-hex 55   ->  8C
+
+if [ $# -ne 1 ]; then
+    echo "usage: $(basename "$0") <percentage 0-100>" >&2
+    exit 1
+fi
+
+pct=$1
+
+# validate: integer 0-100
+if ! [[ $pct =~ ^[0-9]+$ ]] || [ "$pct" -gt 100 ]; then
+    echo "error: '$pct' is not an integer between 0 and 100" >&2
+    exit 1
+fi
+
+# round(pct / 100 * 255), then uppercase 2-digit hex
+val=$(( (pct * 255 + 50) / 100 ))
+printf '%02X\n' "$val"
+
