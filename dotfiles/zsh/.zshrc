@@ -220,3 +220,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
