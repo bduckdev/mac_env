@@ -11,7 +11,7 @@ sketchybar --add event aerospace_monitor_change
 
 sketchybar --bar \
     height=32 \
-    color=0x00000000 \
+    color=0x80000011\
     margin=0 \
     sticky=on \
     padding_left=0 \
@@ -61,7 +61,7 @@ sketchybar --add item front_app left \
     background.color=0x00000000 \
     icon.drawing=off \
     label.font="$FONT_FACE:Bold:16.0" \
-    label.color=$BLACK \
+    label.color=$WHITE\
     label.padding_left=5
 
 sketchybar --add bracket front_app_bracket \
