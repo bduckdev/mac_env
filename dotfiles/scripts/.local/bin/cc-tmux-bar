@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+ccusage daily --json 2>/dev/null |
+	jq -r '.daily[-1].totalCost | "$" + (. * 100 | round / 100 | tostring)'

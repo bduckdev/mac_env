@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-session=$(find ~ ~/School ~/Personal ~/Work ~/.dotfiles ~/Playground -mindepth 1 -maxdepth 1 -type d | tv --preview-command 'tree -C {} | head -n 10')
+session=$(find ~ ~/Work/exploration ~/Personal ~/Work ~/Playground -mindepth 1 -maxdepth 1 -type d | tv --preview-command 'tree -C {} | head -n 10')
 
 session_name=$(basename "$session" | tr . _)
 
