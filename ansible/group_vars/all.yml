@@ -5,7 +5,9 @@ homebrew_taps:
 homebrew_packages:
   - television
   - git
+  - git-delta
   - ansible
+  - yazi
   - stow
   - tmux
   - neovim
@@ -51,6 +53,7 @@ stow_packages:
   - aerospace
   - scripts
   - sketchybar
+  - lazygit
 
 work_dirs:
   - "{{ ansible_env.HOME }}/Work"
