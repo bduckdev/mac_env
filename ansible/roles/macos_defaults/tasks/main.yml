@@ -28,6 +28,9 @@
 - name: Disable recent apps in Dock
   command: defaults write com.apple.dock show-recents -bool false
 
+- name: Disable desktop icons
+  command: defaults write com.apple.finder CreateDesktop -bool false
+
 - name: Restart Dock
   command: killall Dock
   changed_when: false
