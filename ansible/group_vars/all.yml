@@ -39,6 +39,7 @@ homebrew_casks:
   - sketchybar
   - wezterm
   - google-chrome
+  - temurin
   - aerospace
 
 fonts:

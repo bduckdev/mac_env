@@ -31,6 +31,9 @@
 - name: Disable desktop icons
   command: defaults write com.apple.finder CreateDesktop -bool false
 
+- name: Fix small mission control windows from Aerospace
+  command: defaults write com.apple.dock expose-group-apps -bool true
+
 - name: Restart Dock
   command: killall Dock
   changed_when: false
