@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# Center image(s) in the terminal with wezterm imgcat (macOS + Linux)
+detect_cell_ratio() {
+	# Ask terminal for cell size in pixels: reply is ESC[6;HEIGHT;WIDTHt
+	local R cw ch
+	IFS=';' read -rst 0.2 -d t -p $'\e[16t' -a R </dev/tty 2>/dev/null
+	ch=${R[1]}
+	cw=${R[2]}
+	if [[ "$cw" =~ ^[0-9]+$ && "$ch" =~ ^[0-9]+$ && "$cw" -gt 0 ]]; then
+		awk -v h="$ch" -v w="$cw" 'BEGIN{ printf "%.3f", h/w }'
+	else
+		echo 2.1 # fallback if the terminal doesn't answer
+	fi
+}
+
+get_dims() {
+	if command -v magick >/dev/null 2>&1; then
+		magick identify -format '%w %h' "$1[0]" 2>/dev/null
+	elif command -v identify >/dev/null 2>&1; then
+		identify -format '%w %h' "$1[0]" 2>/dev/null
+	elif command -v vipsheader >/dev/null 2>&1; then
+		echo "$(vipsheader -f width "$1") $(vipsheader -f height "$1")"
+	elif command -v sips >/dev/null 2>&1; then
+		sips -g pixelWidth -g pixelHeight "$1" 2>/dev/null |
+			awk '/pixelWidth/{w=$2} /pixelHeight/{h=$2} END{print w, h}'
+	fi
+}
+
+cell_ratio=$(detect_cell_ratio)
+box=90 # max % of screen to fill
+
+for img in "$@"; do
+	cols=$(tput cols)
+	rows=$(tput lines)
+	read iw ih < <(get_dims "$img")
+	[ -z "$iw" ] && {
+		echo "Can't read dimensions for $img" >&2
+		continue
+	}
+
+	maxw=$((cols * box / 100))
+	maxh=$((rows * box / 100))
+	read w h < <(awk -v iw="$iw" -v ih="$ih" -v mw="$maxw" -v mh="$maxh" -v cr="$cell_ratio" 'BEGIN{
+    ar=(iw/ih)*cr; w=mw; h=w/ar;
+    if (h>mh){ h=mh; w=h*ar }
+    printf "%d %d", w, h
+  }')
+
+	x=$(((cols - w) / 2))
+	y=$(((rows - h) / 2))
+	((x < 0)) && x=0
+	((y < 0)) && y=0
+
+	mp=()
+	[ -n "$TMUX" ] && mp=(--tmux-passthru enable --max-pixels 3000000)
+
+	clear
+	wezterm imgcat "${mp[@]}" --width "$w" --height "$h" --position "${x},${y}" "$img"
+	tput cup $((rows - 1)) 0
+	# read -n 1 -s
+done
