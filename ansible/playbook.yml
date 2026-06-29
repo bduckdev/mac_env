@@ -10,6 +10,7 @@
     - dirs
     - taps
     - homebrew
+    - tpm
     - casks
     - fonts
     - macos_defaults
