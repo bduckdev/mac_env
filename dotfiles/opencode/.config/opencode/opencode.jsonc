@@ -1,3 +1,19 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    // Mirrors the Claude Code setup: credentials come from the shell env
+    // (ATLASSIAN_USERNAME, ATLASSIAN_API_TOKEN, JIRA_URL, CONFLUENCE_URL).
+    "mcp-atlassian": {
+      "type": "local",
+      "command": ["uvx", "mcp-atlassian==0.21.0"],
+      "enabled": true
+    }
+  },
+  "tools": {
+    // Delete protection — same hard floor as ~/.claude/settings.json:
+    // block only the three irrecoverable destruction operations.
+    "mcp-atlassian_jira_delete_issue": false,
+    "mcp-atlassian_confluence_delete_page": false,
+    "mcp-atlassian_confluence_delete_attachment": false
+  }
 }
