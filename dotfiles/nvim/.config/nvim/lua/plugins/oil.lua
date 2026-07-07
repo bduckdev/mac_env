@@ -180,6 +180,7 @@ return {
 				border = "rounded",
 			},
 		})
+		vim.keymap.set("n", "|", "<CMD>Oil ..<CR>", { desc = "Open parent directory" })
 		vim.keymap.set("n", "\\", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 		vim.keymap.set("n", "pv", "<CMD>Oil<CR>", { desc = "Open file exporer" })
 	end,
