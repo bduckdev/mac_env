@@ -1,22 +1,21 @@
 #!/opt/homebrew/bin/bash
 #
-# newproject — pick a category, create a project directory, then run a command
+# new-project — pick a category, create a project directory, then run COMMAND
 #              with the selection exposed as environment variables.
 #
-# Usage: newproject <command> [args...]
-#   The command is run with these variables set in its environment:
+# The command that gets launched is set below in COMMAND. It runs with:
 #     TS_DIR    absolute path of the newly created project directory
 #     TS_NAME   the project name you entered
-#
-# Example:
-#   newproject tmuxifier load-session dev
-#   -> runs: TS_DIR="$selected" TS_NAME="$selected_name" tmuxifier load-session dev
 #
 # Requires: television (tv) — https://github.com/alexpasmantier/television
 
 set -euo pipefail
 
-# --- Config: where each category lives. Edit these to taste. -----------------
+# --- Config ------------------------------------------------------------------
+# Command to launch after the project directory is created.
+COMMAND="tmuxifier load-session dev"
+
+# Where each category lives. Edit these to taste.
 declare -A BASE_DIRS=(
 	[Work]="$HOME/Work"
 	[Personal]="$HOME/Personal"
@@ -24,24 +23,17 @@ declare -A BASE_DIRS=(
 )
 # -----------------------------------------------------------------------------
 
-# 1. Require a command to run.
-if [[ $# -lt 1 ]]; then
-	echo "Usage: $(basename "$0") <command> [args...]" >&2
+# Make sure the command and television are available.
+if ! command -v "${COMMAND%% *}" >/dev/null 2>&1; then
+	echo "Error: command '${COMMAND%% *}' not found on PATH." >&2
 	exit 1
 fi
-
-if ! command -v "$1" >/dev/null 2>&1; then
-	echo "Error: command '$1' not found on PATH." >&2
-	exit 1
-fi
-
-# Make sure television is available.
 if ! command -v tv >/dev/null 2>&1; then
 	echo "Error: television (tv) is not installed or not on PATH." >&2
 	exit 1
 fi
 
-# 2. Select a category with television.
+# 1. Select a category with television.
 category="$(printf '%s\n' Work Personal School | tv || true)"
 if [[ -z "$category" ]]; then
 	echo "No category selected. Aborting." >&2
@@ -50,14 +42,14 @@ fi
 
 base="${BASE_DIRS[$category]}"
 
-# 3. Ask for the project name.
+# 2. Ask for the project name.
 read -rp "New project name: " selected_name
 if [[ -z "${selected_name// /}" ]]; then
 	echo "No name given. Aborting." >&2
 	exit 1
 fi
 
-# 4. Create the directory in the selected location.
+# 3. Create the directory in the selected location.
 selected="$base/$selected_name"
 if [[ -e "$selected" ]]; then
 	echo "Error: '$selected' already exists." >&2
@@ -66,9 +58,13 @@ fi
 mkdir -p "$selected"
 echo "Created $selected"
 
-# 5. Enter the new project and run the command with the selection exported.
+# 4. Enter the new project and run COMMAND with the selection exported.
 cd "$selected"
 export TS_DIR="$selected"
 export TS_NAME="$selected_name"
-echo "Running: TS_DIR=\"$selected\" TS_NAME=\"$selected_name\" $*"
-exec "$@"
+echo "Running: TS_DIR=\"$selected\" TS_NAME=\"$selected_name\" $COMMAND"
+if [ -n "${TMUX:-}" ]; then
+	tmux detach -E "TS_DIR='$selected' TS_NAME='$selected_name' bash -ic '$COMMAND'"
+else
+	exec $COMMAND
+fi

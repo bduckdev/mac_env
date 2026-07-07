@@ -40,7 +40,7 @@ return {
 			vim.keymap.set("n", "<C-t>", function()
 				ui.nav_file(2)
 			end)
-			vim.keymap.set("n", "<C-n>", function()
+			vim.keymap.set("n", "<C-y>", function()
 				ui.nav_file(3)
 			end)
 			vim.keymap.set("n", "<C-s>", function()
