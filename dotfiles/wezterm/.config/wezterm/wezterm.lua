@@ -29,9 +29,9 @@ local config = {
 	macos_window_background_blur = 20,
 	window_close_confirmation = "NeverPrompt",
 	window_padding = {
-		left = 12,
-		right = 12,
-		top = 12,
+		left = 16,
+		right = 16,
+		top = 24,
 		bottom = 12,
 	},
 	--default_prog = { "/bin/zsh" },
