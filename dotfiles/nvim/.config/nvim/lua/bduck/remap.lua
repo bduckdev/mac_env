@@ -25,8 +25,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader><leader>s", [[:,$s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- tmux-sessionizer
-
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmuxifier-sessionizer<CR>")
 
 -- lazygit
 -- vim.keymap.set("n", "<C-g>", "<cmd>silent !tmux neww lazygit<CR>")
