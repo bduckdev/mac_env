@@ -5,26 +5,42 @@ return {
 		dependencies = { "echasnovski/mini.icons" },
 		lazy = false,
 		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
 			bigfile = { enabled = true },
 			dashboard = {
 				enabled = true,
 				sections = {
 					{
-						pane = 2,
+						pane = 1,
 						{ section = "header" },
+						{
+							text = {
+								{ "  ", hl = "SnacksDashboardIcon" },
+								{ "gibe files", hl = "SnacksDashboardDesc", width = 56 },
+								{ ".", hl = "SnacksDashboardKey" },
+							},
+							action = ":Oil .",
+							key = ".",
+							gap = 1,
+							padding = 1,
+						},
 						{ section = "keys", gap = 1, padding = 1 },
 						{ section = "startup" },
 					},
 					{
 						section = "terminal",
-						cmd = "chafa ~/Pictures/feet-lmao-4_no-bg.png --format symbols --symbols vhalf --stretch",
-						pane = 1,
-						indent = 4,
-						height = 24,
+						cmd = "pokemon-colorscripts -n giratina -f origin --no-title; sleep .1",
+						--	random = 10,
+						pane = 2,
+						--indent = 4,
+						height = 30,
 					},
+					--{
+					--	section = "terminal",
+					--	cmd = "chafa ~/Pictures/feet-lmao-4_no-bg.png --format symbols --symbols vhalf --stretch",
+					--	pane = 1,
+					--	indent = 4,
+					--	height = 24,
+					--},
 				},
 			},
 			notifier = { enabled = true },
