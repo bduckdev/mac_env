@@ -1,19 +1,39 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "Default": {
+      "description": "",
+      "prompt": "",
+    },
+    "Explorer": {
+      "description": "Explores codebase and returns structured answers to users questions.",
+      "prompt": "You are a codebase explorer. Focus on providing answers to the users question in a structured and efficient manner.",
+      "tools": {
+        // Disable file modification tools for review-only agent
+        "write": false,
+        "edit": false,
+      },
+    },
+  },
   "mcp": {
     // Mirrors the Claude Code setup: credentials come from the shell env
     // (ATLASSIAN_USERNAME, ATLASSIAN_API_TOKEN, JIRA_URL, CONFLUENCE_URL).
     "mcp-atlassian": {
       "type": "local",
       "command": ["uvx", "mcp-atlassian==0.21.0"],
-      "enabled": true
-    }
+      "enabled": true,
+    },
   },
   "tools": {
     // Delete protection — same hard floor as ~/.claude/settings.json:
     // block only the three irrecoverable destruction operations.
     "mcp-atlassian_jira_delete_issue": false,
     "mcp-atlassian_confluence_delete_page": false,
-    "mcp-atlassian_confluence_delete_attachment": false
-  }
+    "mcp-atlassian_confluence_delete_attachment": false,
+  },
+  "permission": {
+    "question": "allow",
+  },
+  "plugin": ["@kirmad/askuserquestion"],
+  "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"],
 }
