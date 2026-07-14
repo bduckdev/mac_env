@@ -18,8 +18,8 @@ return {
 					null_ls.builtins.formatting.shfmt,
 					-- go
 					null_ls.builtins.formatting.gofumpt,
-					-- rustfmt
-					--null_ls.builtins.formatting.rustfmt,
+					-- sql
+					null_ls.builtins.formatting.sql_formatter,
 				},
 			})
 
