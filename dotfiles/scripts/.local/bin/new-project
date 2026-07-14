@@ -56,6 +56,8 @@ if [[ -e "$selected" ]]; then
 	exit 1
 fi
 mkdir -p "$selected"
+cp ~/mac_env/AGENTS_TEMPLATE.md "$selected"/AGENTS.md
+ln -s "$selected"/AGENTS.md "$selected"/CLAUDE.md
 echo "Created $selected"
 
 # 4. Enter the new project and run COMMAND with the selection exported.
