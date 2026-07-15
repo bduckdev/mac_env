@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/home/linuxbrew/.linuxbrew/bin/zsh
 
 if [ -n "$TMUX" ]; then
 	tmux detach -E "bash -ic tmuxifier-sessionizer"

@@ -91,7 +91,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --margin="8,10,8,10" --padding="1" --border="rounded" --preview-window="border-rounded"
 '
 
-eval "$(zoxide init zsh)"
 # study stream aliases
 # Requires https://github.com/caarlos0/timer to be installed. spd-say should ship with your distro
 
@@ -112,10 +111,6 @@ pomodoro () {
 alias wo="pomodoro 'work'"
 alias br="pomodoro 'break'"
 
-# tmuxifier
-export PATH=$PATH:$HOME/.tmux/plugins/tmuxifier/bin
-export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
-eval "$(tmuxifier init -)"
 
 #echo "use z instead of cd"
 export PATH=$PATH:$HOME/go/bin
@@ -125,6 +120,16 @@ export PATH=$PATH:$GOPATH/bin
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 
+export PATH="$PATH:$(bash -ic 'echo $PATH'):$PATH"
+
+
+# tmuxifier
+export PATH=$PATH:$HOME/.tmux/plugins/tmuxifier/bin
+export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
+eval "$(tmuxifier init -)"
+
+#zoxide
+eval "$(zoxide init zsh)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
