@@ -91,102 +91,99 @@ down = "volume down"
 up = "volume up"
 shift-down = ["volume set 0", "mode main"]
 
+# Workspace 1 - boring adult stuff
 [[on-window-detected]]
-if.app-id = "com.spotify.client"
-run = "move-node-to-workspace 10"
-
+if.app-id = "com.microsoft.Outlook"
+run = "move-node-to-workspace 1"
+[[on-window-detected]]
+if.app-id = "com.apple.iCal"
+run = "move-node-to-workspace 1"
 [[on-window-detected]]
 if.app-id = "com.apple.reminders"
 run = "move-node-to-workspace 1"
 
+# Workspace 2 - AI Chatbots
 [[on-window-detected]]
 if.app-id = "com.openai.chat"
 run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
-if.app-id = "com.github.wez.wezterm"
-run = "move-node-to-workspace 3"
-
-[[on-window-detected]]
-if.app-id = "company.thebrowser.Browser"
-run = "move-node-to-workspace 4"
-
-[[on-window-detected]]
-if.app-id = "com.brave.Browser"
-run = "move-node-to-workspace 4"
-
-[[on-window-detected]]
-if.app-id = "com.apple.Safari"
-run = "move-node-to-workspace 4"
-
-[[on-window-detected]]
-if.app-id = "com.google.Chrome"
-run = "move-node-to-workspace 4"
-
-[[on-window-detected]]
-if.app-id = "io.remnote"
-run = "move-node-to-workspace 5"
-
-[[on-window-detected]]
-if.app-id = "com.apple.iCal"
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = "com.goodnotesapp.x"
-run = "move-node-to-workspace 5"
-
-[[on-window-detected]]
-if.app-id = "com.apple.MobileSMS"
-run = ["layout floating", "move-node-to-workspace 8"]
-
-[[on-window-detected]]
-if.app-id = "ru.keepcoder.Telegram"
-run = "move-node-to-workspace 6"
-
-[[on-window-detected]]
-if.app-id = "com.hnc.Discord"
-run = "move-node-to-workspace 7"
-
-[[on-window-detected]]
-if.app-id = "com.tinyspeck.slackmacgap"
-run = "move-node-to-workspace 7"
-
-[[on-window-detected]]
-if.app-id = "com.utmapp.UTM"
-run = "move-node-to-workspace 8"
-
-[[on-window-detected]]
-if.app-id = "com.google.android.mtpviewer"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "ch.protonvpn.mac"
-run = ["layout floating", "move-node-to-workspace 8"]
-
-[[on-window-detected]]
-if.app-id = "com.apple.FaceTime"
-run = ["layout floating", "move-node-to-workspace 8"]
-
-[[on-window-detected]]
-if.app-id = "com.apple.finder"
-run = ["layout floating", "move-node-to-workspace 8"]
-
-[[on-window-detected]]
-if.app-id = "com.microsoft.Outlook"
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = "com.microsoft.teams2"
-run = "move-node-to-workspace 7"
-
-[[on-window-detected]]
-if.app-id = "md.obsidian"
-run = "move-node-to-workspace 5"
-
 [[on-window-detected]]
 if.app-id = "com.anthropic.claudefordesktop"
 run = "move-node-to-workspace 2"
 
+# Workspace 3 - Terminal
+[[on-window-detected]]
+if.app-id = "com.github.wez.wezterm"
+run = "move-node-to-workspace 3"
+
+# Workspace 4 - Web Browser
+[[on-window-detected]]
+if.app-id = "company.thebrowser.Browser"
+run = "move-node-to-workspace 4"
+[[on-window-detected]]
+if.app-id = "com.brave.Browser"
+run = "move-node-to-workspace 4"
+[[on-window-detected]]
+if.app-id = "com.apple.Safari"
+run = "move-node-to-workspace 4"
+[[on-window-detected]]
+if.app-id = "com.google.Chrome"
+run = "move-node-to-workspace 4"
+
+# Workspace 5 - Notes
+[[on-window-detected]]
+if.app-id = "md.obsidian"
+run = "move-node-to-workspace 5"
+[[on-window-detected]]
+if.app-id = "io.remnote"
+run = "move-node-to-workspace 5"
+[[on-window-detected]]
+if.app-id = "com.goodnotesapp.x"
+run = "move-node-to-workspace 5"
+
+# Workspace 6 - Duet
+[[on-window-detected]]
+if.app-id = "com.kairos.duetMac"
+run = ["layout floating", "move-node-to-workspace 6"]
+
+# Workspace 7 - Communication
+[[on-window-detected]]
+if.app-id = "com.apple.MobileSMS"
+run = ["layout floating", "move-node-to-workspace 7"]
+[[on-window-detected]]
+if.app-id = "ru.keepcoder.Telegram"
+run = ["layout floating", "move-node-to-workspace 7"]
+[[on-window-detected]]
+if.app-id = "com.microsoft.teams2"
+run = "move-node-to-workspace 7"
+[[on-window-detected]]
+if.app-id = "com.hnc.Discord"
+run = "move-node-to-workspace 7"
+[[on-window-detected]]
+if.app-id = "com.tinyspeck.slackmacgap"
+run = "move-node-to-workspace 7"
+
+
+# Workspace 8 - Misc
+[[on-window-detected]]
+if.app-id = "com.google.android.mtpviewer"
+run = ["layout floating", "move-node-to-workspace 8"]
+[[on-window-detected]]
+if.app-id = "com.utmapp.UTM"
+run = ["move-node-to-workspace 8"]
+[[on-window-detected]]
+if.app-id = "ch.protonvpn.mac"
+run = ["layout floating", "move-node-to-workspace 8"]
+[[on-window-detected]]
+if.app-id = "com.apple.FaceTime"
+run = ["layout floating", "move-node-to-workspace 8"]
+[[on-window-detected]]
+if.app-id = "com.apple.finder"
+run = ["layout floating", "move-node-to-workspace 8"]
+
+# Workspace 10 - Music
+[[on-window-detected]]
+if.app-id = "com.spotify.client"
+run = "move-node-to-workspace 10"
 [[on-window-detected]]
 if.app-id = "com.electron.brain.fm"
 run = ["layout floating", "move-node-to-workspace 10"]
