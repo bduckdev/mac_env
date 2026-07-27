@@ -7,10 +7,10 @@
       "prompt": "You are a helpful assistant.",
     },
     "plan": {
-      "disable": false,
+      "disable": true,
     },
     "build": {
-      "disable": false,
+      "disable": true,
     },
   },
   "mcp": {
