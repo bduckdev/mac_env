@@ -4,6 +4,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"lua_ls",
+				--"vtsls",
 				"ts_ls",
 				"rust_analyzer",
 				"gopls",
@@ -35,7 +36,9 @@ return {
 					},
 				},
 			},
-			"neovim/nvim-lspconfig",
+			{
+				"neovim/nvim-lspconfig",
+			},
 		},
 	},
 	{
