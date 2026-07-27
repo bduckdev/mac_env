@@ -3,8 +3,9 @@ session_root "${TS_DIR}"
 if initialize_session "${TS_NAME}"; then
 	new_window "editor"
 	run_cmd "nvim ."
-	split_v 5
 	select_pane 0
+
+	new_window "shell"
 
 	new_window "agent"
 	run_cmd "opencode"
@@ -14,7 +15,6 @@ if initialize_session "${TS_NAME}"; then
 	fi
 	select_pane 0
 
-	new_window "shell"
 	new_window "server"
 	if grep -qE '^dev *:' ${TS_DIR}/Makefile; then
 		run_cmd "make dev"
