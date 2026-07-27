@@ -1,0 +1,27 @@
+#!/opt/homebrew/bin/bash
+set -euo pipefail
+
+file=$HOME"/.config/opencode/opencode.jsonc"
+
+if [[ ! -f "$file" ]]; then
+	echo "Error: file not found: $file" >&2
+	exit 1
+fi
+
+cp "$file" "$file.bak"
+
+# Three-pass swap via a sentinel so true↔false don't collide.
+script='
+  s/"disable": true/"disable": __TMP__/g
+  s/"disable": false/"disable": true/g
+  s/"disable": __TMP__/"disable": false/g
+'
+
+# GNU sed (Linux) supports --version; BSD sed (macOS) doesn't.
+if sed --version >/dev/null 2>&1; then
+	sed -i "$script" "$file" # GNU/Linux
+else
+	sed -i '' "$script" "$file" # BSD/macOS
+fi
+
+echo "Toggled disable flags in $file. Backup at $file.bak"

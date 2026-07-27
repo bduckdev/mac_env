@@ -6,7 +6,7 @@ else
 	if [[ $# -eq 1 ]]; then
 		selected=$1
 	else
-		selected=$(find ~ ~/Work ~/Personal ~/School -mindepth 1 -maxdepth 1 -type d | tv --preview-command 'tree -C {} | head -n 10')
+		selected=$(find ~ ~/Work ~/Personal ~/School ~/Playground -mindepth 1 -maxdepth 1 -type d | tv --preview-command 'tree -C {} | head -n 10')
 	fi
 
 	[[ -z $selected ]] && exit 0

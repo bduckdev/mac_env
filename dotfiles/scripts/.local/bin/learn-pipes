@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+#
+#  ♪ redir-rap.sh ♪  — learn stream redirection, PaRappa style
+#  "I gotta believe!"  in stdout AND stderr we trust.
+#
+set -u
+
+DIR="$(mktemp -d)"
+F="$DIR/file.txt"
+
+# ── little helpers ─────────────────────────────────────────────
+bar()  { echo "═══════════════════════════════════════════════════"; }
+
+# the "noisemaker": shouts one line to stdout, one line to stderr.
+# this is the whole trick — a command that talks on BOTH channels,
+# so you can SEE which redirect grabs which.
+noise() {
+  echo "OUT> hey I'm stdout, channel one, the star of the show"   # -> fd 1
+  echo "ERR> yo I'm stderr, channel two, down here below"    >&2  # -> fd 2
+}
+
+show_file() {
+  echo "   ── what landed in file.txt: ──"
+  if [ -s "$F" ]; then sed 's/^/   │ /' "$F"; else echo "   │ (empty — nothin' caught!)"; fi
+  echo
+}
+
+reset() { : > "$F"; }   # truncate the file back to empty between rounds
+
+# ── the show ───────────────────────────────────────────────────
+cat <<'INTRO'
+
+  ♪♪ REDIRECTION RAP — you gotta believe! ♪♪
+  Two little channels, remember their names:
+  ONE is your stdout, TWO is stderr, that's the game.
+  Watch what hits your SCREEN and what the FILE will keep,
+  'cause where you aim that arrow decides who gets to speak!
+
+INTRO
+
+# 1 ────────────────────────────────────────────────────────────
+bar
+echo "ROUND 1:  noise > file.txt        (plain >, that's really 1>)"
+echo "  Rhyme: 'Arrow with no number grabs channel number ONE,'"
+echo "         'stdout's in the file — but stderr's on the run!'"
+echo "  ── live on your screen: ──"
+reset; noise > "$F"
+show_file
+
+# 2 ────────────────────────────────────────────────────────────
+bar
+echo "ROUND 2:  noise 2> file.txt       (two-arrow: stderr only)"
+echo "  Rhyme: 'Slap a TWO up front and you flip the whole plan,'"
+echo "         'errors in the file, stdout struts across the land!'"
+echo "  ── live on your screen: ──"
+reset; noise 2> "$F"
+show_file
+
+# 3 ────────────────────────────────────────────────────────────
+bar
+echo "ROUND 3:  noise &> file.txt       (ampersand: BOTH channels)"
+echo "  Rhyme: 'Ampersand-arrow, now you're catchin' the pair,'"
+echo "         'one AND two in the file, ain't nothin' left in the air!'"
+echo "  ── live on your screen: ──  (spoiler: silence!)"
+reset; noise &> "$F"
+show_file
+
+# 4 ────────────────────────────────────────────────────────────
+bar
+echo "ROUND 4:  noise >&2               (send stdout TO stderr)"
+echo "  Rhyme: 'Arrow-and-two means point at where channel two flew,'"
+echo "         'no file at all here — both lines shout right at you!'"
+echo "  ── live on your screen: ──  (both on screen, file untouched)"
+reset; noise >&2
+show_file
+
+# 5 ────────────────────────────────────────────────────────────
+bar
+echo "ROUND 5:  noise > file.txt 2>&1   (the RIGHT order, both saved)"
+echo "  Rhyme: 'First send ONE to the file, THEN say two-follow-one,'"
+echo "         'two chases one to the file — clean catch, nicely done!'"
+echo "  ── live on your screen: ──  (silence again — all captured)"
+reset; noise > "$F" 2>&1
+show_file
+
+# 6 ────────────────────────────────────────────────────────────
+bar
+echo "ROUND 6:  noise 2>&1 > file.txt   (the WRONG order — gotcha!)"
+echo "  Rhyme: 'Flip it around and the trick falls apart,'"
+echo "         'two copied stdout's OLD spot — the screen — from the start!'"
+echo "         'Then one moves to the file all alone, see?'"
+echo "         'stderr's still yellin' at you — order's the key!'"
+echo "  ── live on your screen: ──  (ERR leaks out!)"
+reset; noise 2>&1 > "$F"
+show_file
+
+# 7 ────────────────────────────────────────────────────────────
+bar
+echo "ROUND 7:  echo 'foo' >> file.txt  (double = append, don't erase)"
+echo "  Rhyme: 'Single arrow wipes it clean before it will write,'"
+echo "         'DOUBLE it up to add on — keep the old lines in sight!'"
+reset
+echo "line the first"  > "$F"
+echo "foo appended!"   >> "$F"
+show_file
+
+bar
+cat <<'OUTRO'
+  ♪♪ And that's the rap! Let's recap the crew: ♪♪
+    >   is 1>   — stdout to a file
+    2>          — stderr to a file
+    &>          — BOTH to a file  (= > file 2>&1)
+    >&2         — stdout goes to wherever stderr points
+    2>&1        — "make two follow one" (ORDER matters!)
+    >>          — append, don't annihilate
+  You gotta believe... in your file descriptors!  ♪
+OUTRO
+echo
+echo "(scratch file was: $F  — deleting it now)"
+rm -rf "$DIR"
