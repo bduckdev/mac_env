@@ -3,16 +3,16 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font", monospace;
-    font-size: 13px;
+    font-family: "JetBrainsMonoNerdFontPropo", monospace;
+    font-size: 12px;
     min-height: 0;
     padding: 1px;
 }
 
 window#waybar {
-    background: rgba(0, 0, 17, 0.72);
+    background: rgba(22, 24, 26, 0.75);
     color: #ffffff;
-    border: 1px solid rgba(94, 241, 255, 0.25);
+    border: 1px solid rgba(54, 64, 72, 0.75);
     border-radius: 10px;
 }
 

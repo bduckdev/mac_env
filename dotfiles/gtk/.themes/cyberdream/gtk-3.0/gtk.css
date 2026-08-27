@@ -1,0 +1,482 @@
+/*
+ * Cyberdream GTK 3 theme
+ *
+ * Background: #16181a
+ * Surface:    #1e2124
+ * Elevated:   #272a2f
+ * Selection:  #3c4048
+ * Foreground: #ffffff
+ * Accent:     #ffbd5e
+ */
+
+@define-color background #16181a;
+@define-color surface #1e2124;
+@define-color surface_elevated #272a2f;
+@define-color selection #3c4048;
+@define-color foreground #ffffff;
+@define-color muted #a8abb2;
+@define-color disabled #686b72;
+@define-color border #3c4048;
+
+@define-color red #ff6e5e;
+@define-color green #5eff6c;
+@define-color yellow #f1ff5e;
+@define-color orange #ffbd5e;
+@define-color blue #5ea1ff;
+@define-color purple #bd5eff;
+@define-color cyan #5ef1ff;
+
+* {
+  background-clip: padding-box;
+  color: @foreground;
+
+  -gtkwidget-focus-padding: 0;
+  -gtkwidget-focus-line-width: 0;
+
+  outline-color: alpha(@blue, 0.7);
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: -2px;
+}
+
+window,
+dialog,
+.background {
+  background-color: @background;
+  color: @foreground;
+}
+
+.view,
+textview,
+textview text,
+treeview,
+iconview {
+  background-color: @background;
+  color: @foreground;
+}
+
+.view:selected,
+.view selection,
+textview text selection,
+treeview:selected,
+iconview:selected {
+  background-color: @selection;
+  color: @foreground;
+}
+
+/* Header bars */
+
+headerbar,
+.titlebar {
+  min-height: 38px;
+  padding: 4px 8px;
+
+  background-color: @surface;
+  color: @foreground;
+
+  border: none;
+  border-bottom: 1px solid @border;
+  box-shadow: none;
+}
+
+headerbar:backdrop,
+.titlebar:backdrop {
+  background-color: @background;
+  color: @muted;
+}
+
+headerbar .title,
+headerbar .subtitle {
+  color: @foreground;
+}
+
+headerbar .subtitle {
+  color: @muted;
+}
+
+/* Buttons */
+
+button {
+  min-height: 28px;
+  min-width: 28px;
+  padding: 4px 10px;
+
+  background-color: @surface_elevated;
+  color: @foreground;
+
+  border: 1px solid @border;
+  border-radius: 6px;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+button:hover {
+  background-color: @selection;
+  border-color: @blue;
+}
+
+button:active,
+button:checked {
+  background-color: @blue;
+  color: #16181a;
+  border-color: @blue;
+}
+
+button:focus {
+  border-color: @cyan;
+}
+
+button:disabled {
+  background-color: @surface;
+  color: @disabled;
+  border-color: alpha(@border, 0.6);
+}
+
+button.suggested-action {
+  background-color: @blue;
+  color: #16181a;
+  border-color: @blue;
+}
+
+button.suggested-action:hover {
+  background-color: @cyan;
+  border-color: @cyan;
+}
+
+button.destructive-action {
+  background-color: @red;
+  color: #16181a;
+  border-color: @red;
+}
+
+/* Entry fields */
+
+entry,
+spinbutton,
+combobox entry {
+  min-height: 30px;
+  padding: 3px 8px;
+
+  background-color: @background;
+  color: @foreground;
+
+  border: 1px solid @border;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+entry:focus,
+spinbutton:focus,
+combobox entry:focus {
+  border-color: @blue;
+  box-shadow: 0 0 0 1px alpha(@blue, 0.35);
+}
+
+entry selection {
+  background-color: @selection;
+  color: @foreground;
+}
+
+entry:disabled {
+  background-color: @surface;
+  color: @disabled;
+}
+
+/* Menus and popovers */
+
+menu,
+.menu,
+popover,
+.popup {
+  padding: 4px;
+
+  background-color: @surface;
+  color: @foreground;
+
+  border: 1px solid @border;
+  border-radius: 7px;
+  box-shadow: 0 8px 24px alpha(#000000, 0.45);
+}
+
+menuitem,
+modelbutton {
+  min-height: 28px;
+  padding: 4px 10px;
+
+  background-color: transparent;
+  color: @foreground;
+
+  border-radius: 5px;
+}
+
+menuitem:hover,
+menuitem:active,
+modelbutton:hover,
+modelbutton:checked {
+  background-color: @selection;
+  color: @foreground;
+}
+
+menuitem:disabled,
+modelbutton:disabled {
+  color: @disabled;
+}
+
+/* Notebook tabs */
+
+notebook {
+  background-color: @background;
+  border: none;
+}
+
+notebook header {
+  background-color: @surface;
+  border: none;
+  border-bottom: 1px solid @border;
+}
+
+notebook tab {
+  min-height: 30px;
+  padding: 4px 12px;
+
+  background-color: @surface;
+  color: @muted;
+
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+notebook tab:hover {
+  background-color: @surface_elevated;
+  color: @foreground;
+}
+
+notebook tab:checked {
+  background-color: @surface_elevated;
+  color: @foreground;
+  border-bottom-color: @orange;
+}
+
+/* Sidebar and lists */
+
+.sidebar,
+.navigation-sidebar,
+placessidebar,
+stacksidebar {
+  background-color: @surface;
+  color: @foreground;
+  border-right: 1px solid @border;
+}
+
+row {
+  min-height: 30px;
+  background-color: transparent;
+  color: @foreground;
+}
+
+row:hover {
+  background-color: @surface_elevated;
+}
+
+row:selected {
+  background-color: @selection;
+  color: @foreground;
+}
+
+list,
+listbox {
+  background-color: @background;
+  color: @foreground;
+}
+
+/* Scrollbars */
+
+scrollbar {
+  background-color: transparent;
+}
+
+scrollbar trough {
+  background-color: @background;
+  border: none;
+}
+
+scrollbar slider {
+  min-width: 8px;
+  min-height: 8px;
+
+  background-color: @selection;
+  border: 2px solid transparent;
+  border-radius: 999px;
+}
+
+scrollbar slider:hover {
+  background-color: @blue;
+}
+
+scrollbar slider:active {
+  background-color: @cyan;
+}
+
+/* Switches */
+
+switch {
+  min-width: 40px;
+  min-height: 22px;
+
+  background-color: @selection;
+  border: 1px solid @border;
+  border-radius: 999px;
+}
+
+switch slider {
+  min-width: 18px;
+  min-height: 18px;
+
+  background-color: @foreground;
+  border-radius: 999px;
+}
+
+switch:checked {
+  background-color: @green;
+  border-color: @green;
+}
+
+switch:checked slider {
+  background-color: #16181a;
+}
+
+/* Checkboxes and radio buttons */
+
+check,
+radio {
+  min-width: 16px;
+  min-height: 16px;
+
+  background-color: @background;
+  color: #16181a;
+
+  border: 1px solid @border;
+}
+
+check {
+  border-radius: 4px;
+}
+
+radio {
+  border-radius: 999px;
+}
+
+check:hover,
+radio:hover {
+  border-color: @blue;
+}
+
+check:checked,
+radio:checked {
+  background-color: @green;
+  border-color: @green;
+}
+
+/* Progress and scales */
+
+progressbar trough,
+levelbar trough,
+scale trough {
+  min-height: 6px;
+
+  background-color: @selection;
+  border-radius: 999px;
+}
+
+progressbar progress,
+levelbar block.filled,
+scale highlight {
+  background-color: @blue;
+  border-radius: 999px;
+}
+
+scale slider {
+  min-width: 16px;
+  min-height: 16px;
+
+  background-color: @foreground;
+  border: 2px solid @blue;
+  border-radius: 999px;
+}
+
+/* Toolbars */
+
+toolbar,
+.primary-toolbar,
+.inline-toolbar,
+actionbar {
+  background-color: @surface;
+  color: @foreground;
+  border-color: @border;
+  box-shadow: none;
+}
+
+/* Separators */
+
+separator {
+  min-width: 1px;
+  min-height: 1px;
+  background-color: @border;
+}
+
+/* Tooltips */
+
+tooltip,
+tooltip.background {
+  background-color: @surface_elevated;
+  color: @foreground;
+
+  border: 1px solid @border;
+  border-radius: 5px;
+}
+
+tooltip label {
+  color: @foreground;
+}
+
+/* Links */
+
+link,
+*:link {
+  color: @cyan;
+}
+
+link:hover,
+*:link:hover {
+  color: @blue;
+}
+
+/* Status colors */
+
+.error,
+.error label {
+  color: @red;
+}
+
+.warning,
+.warning label {
+  color: @yellow;
+}
+
+.success,
+.success label {
+  color: @green;
+}
+
+/* Nautilus and file chooser compatibility */
+
+.nautilus-window,
+filechooser {
+  background-color: @background;
+  color: @foreground;
+}
+
+placessidebar row:selected {
+  background-color: @selection;
+  color: @foreground;
+}

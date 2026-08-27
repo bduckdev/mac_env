@@ -1,0 +1,43 @@
+# Cyberdream — mako notification theme
+
+font=JetBrainsMono Nerd Font 10
+background-color=#16181aD9
+text-color=#ffffffff
+border-color=#5ea1ffff
+progress-color=over #bd5effff
+
+width=360
+height=140
+margin=12
+padding=14
+border-size=1
+border-radius=10
+
+icons=1
+max-icon-size=48
+
+default-timeout=5000
+ignore-timeout=0
+
+[urgency=low]
+border-color=#3c4048ff
+text-color=#ffffffff
+
+[urgency=normal]
+border-color=#5ea1ffff
+text-color=#ffffffff
+
+[urgency=high]
+border-color=#ff6e5eff
+text-color=#ffffffff
+default-timeout=0
+
+[category=im.received]
+border-color=#5eff6cff
+
+[category=email]
+border-color=#5ef1ffff
+
+[category=transfer]
+border-color=#bd5effff
+progress-color=over #f1ff5eff

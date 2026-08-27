@@ -1,12 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export PATH="$PATH:$(bash -ic 'echo $PATH'):$PATH"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-plugins=(
-    zsh-autosuggestions
-)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,7 +118,6 @@ export PATH=$PATH:$GOPATH/bin
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 
-export PATH="$PATH:$(bash -ic 'echo $PATH'):$PATH"
 
 
 # tmuxifier
@@ -148,6 +145,9 @@ unset __conda_setup
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
+plugins=(
+    zsh-autosuggestions
+)
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

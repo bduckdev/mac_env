@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Helium
+Comment=Helium Browser
+Exec=/home/bduck/Applications/some-app.AppImage
+Icon=/home/bduck/.local/share/icons/Helium.png
+Terminal=false
+Type=Application
+Categories=Utility;

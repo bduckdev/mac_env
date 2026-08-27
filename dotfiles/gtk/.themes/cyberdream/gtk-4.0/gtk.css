@@ -1,0 +1,387 @@
+/*
+ * Cyberdream GTK 4 theme
+ */
+
+@define-color background #16181a;
+@define-color surface #1e2124;
+@define-color surface_elevated #272a2f;
+@define-color selection #3c4048;
+@define-color foreground #ffffff;
+@define-color muted #a8abb2;
+@define-color disabled #686b72;
+@define-color border #3c4048;
+
+@define-color red #ff6e5e;
+@define-color green #5eff6c;
+@define-color yellow #f1ff5e;
+@define-color orange #ffbd5e;
+@define-color blue #5ea1ff;
+@define-color purple #bd5eff;
+@define-color cyan #5ef1ff;
+
+* {
+  color: @foreground;
+  outline-color: alpha(@blue, 0.7);
+}
+
+window,
+dialog,
+.background {
+  background-color: @background;
+  color: @foreground;
+}
+
+.view,
+textview,
+textview text,
+columnview,
+gridview,
+listview {
+  background-color: @background;
+  color: @foreground;
+}
+
+selection,
+.view:selected,
+row:selected {
+  background-color: @selection;
+  color: @foreground;
+}
+
+/* Header bars */
+
+headerbar {
+  min-height: 38px;
+  padding: 4px 8px;
+
+  background-color: @surface;
+  color: @foreground;
+
+  border-bottom: 1px solid @border;
+  box-shadow: none;
+}
+
+headerbar:backdrop {
+  background-color: @background;
+  color: @muted;
+}
+
+/* Buttons */
+
+button {
+  min-height: 28px;
+  min-width: 28px;
+  padding: 4px 10px;
+
+  background-color: @surface_elevated;
+  color: @foreground;
+
+  border: 1px solid @border;
+  border-radius: 6px;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+button:hover {
+  background-color: @selection;
+  border-color: @blue;
+}
+
+button:active,
+button:checked {
+  background-color: @blue;
+  color: #16181a;
+  border-color: @blue;
+}
+
+button:disabled {
+  background-color: @surface;
+  color: @disabled;
+}
+
+button.suggested-action {
+  background-color: @blue;
+  color: #16181a;
+  border-color: @blue;
+}
+
+button.suggested-action:hover {
+  background-color: @cyan;
+  border-color: @cyan;
+}
+
+button.destructive-action {
+  background-color: @red;
+  color: #16181a;
+  border-color: @red;
+}
+
+/* Inputs */
+
+entry,
+spinbutton {
+  min-height: 30px;
+  padding: 3px 8px;
+
+  background-color: @background;
+  color: @foreground;
+
+  border: 1px solid @border;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+entry:focus-within,
+spinbutton:focus-within {
+  border-color: @blue;
+  box-shadow: 0 0 0 1px alpha(@blue, 0.35);
+}
+
+entry selection {
+  background-color: @selection;
+  color: @foreground;
+}
+
+/* Popovers and menus */
+
+popover {
+  background-color: @surface;
+  color: @foreground;
+
+  border: 1px solid @border;
+  border-radius: 7px;
+  box-shadow: 0 8px 24px alpha(#000000, 0.45);
+}
+
+popover contents {
+  padding: 4px;
+  background-color: @surface;
+  border-radius: 7px;
+}
+
+popover modelbutton {
+  min-height: 28px;
+  padding: 4px 10px;
+
+  background-color: transparent;
+  color: @foreground;
+
+  border-radius: 5px;
+}
+
+popover modelbutton:hover,
+popover modelbutton:checked {
+  background-color: @selection;
+}
+
+/* Tabs */
+
+notebook {
+  background-color: @background;
+}
+
+notebook header {
+  background-color: @surface;
+  border-bottom: 1px solid @border;
+}
+
+notebook tab {
+  min-height: 30px;
+  padding: 4px 12px;
+
+  background-color: @surface;
+  color: @muted;
+
+  border-bottom: 2px solid transparent;
+}
+
+notebook tab:hover {
+  background-color: @surface_elevated;
+  color: @foreground;
+}
+
+notebook tab:checked {
+  background-color: @surface_elevated;
+  color: @foreground;
+  border-bottom-color: @orange;
+}
+
+/* Sidebars and lists */
+
+.sidebar,
+.navigation-sidebar {
+  background-color: @surface;
+  color: @foreground;
+  border-right: 1px solid @border;
+}
+
+list,
+listbox,
+listview,
+columnview,
+gridview {
+  background-color: @background;
+  color: @foreground;
+}
+
+row {
+  min-height: 30px;
+  background-color: transparent;
+}
+
+row:hover {
+  background-color: @surface_elevated;
+}
+
+row:selected {
+  background-color: @selection;
+}
+
+/* Scrollbars */
+
+scrollbar {
+  background-color: transparent;
+}
+
+scrollbar trough {
+  background-color: transparent;
+}
+
+scrollbar slider {
+  min-width: 8px;
+  min-height: 8px;
+
+  background-color: @selection;
+  border-radius: 999px;
+}
+
+scrollbar slider:hover {
+  background-color: @blue;
+}
+
+scrollbar slider:active {
+  background-color: @cyan;
+}
+
+/* Switches */
+
+switch {
+  min-width: 40px;
+  min-height: 22px;
+
+  background-color: @selection;
+  border: 1px solid @border;
+  border-radius: 999px;
+}
+
+switch slider {
+  min-width: 18px;
+  min-height: 18px;
+
+  background-color: @foreground;
+  border-radius: 999px;
+}
+
+switch:checked {
+  background-color: @green;
+  border-color: @green;
+}
+
+switch:checked slider {
+  background-color: #16181a;
+}
+
+/* Checks and radios */
+
+check,
+radio {
+  min-width: 16px;
+  min-height: 16px;
+
+  background-color: @background;
+  color: #16181a;
+
+  border: 1px solid @border;
+}
+
+check {
+  border-radius: 4px;
+}
+
+radio {
+  border-radius: 999px;
+}
+
+check:checked,
+radio:checked {
+  background-color: @green;
+  border-color: @green;
+}
+
+/* Progress */
+
+progressbar trough,
+levelbar trough,
+scale trough {
+  min-height: 6px;
+
+  background-color: @selection;
+  border-radius: 999px;
+}
+
+progressbar progress,
+levelbar block.filled,
+scale highlight {
+  background-color: @blue;
+  border-radius: 999px;
+}
+
+scale slider {
+  min-width: 16px;
+  min-height: 16px;
+
+  background-color: @foreground;
+  border: 2px solid @blue;
+  border-radius: 999px;
+}
+
+/* Miscellaneous */
+
+toolbar,
+actionbar {
+  background-color: @surface;
+  color: @foreground;
+  border-color: @border;
+}
+
+separator {
+  background-color: @border;
+}
+
+tooltip {
+  background-color: @surface_elevated;
+  color: @foreground;
+
+  border: 1px solid @border;
+  border-radius: 5px;
+}
+
+link {
+  color: @cyan;
+}
+
+link:hover {
+  color: @blue;
+}
+
+.error {
+  color: @red;
+}
+
+.warning {
+  color: @yellow;
+}
+
+.success {
+  color: @green;
+}
