@@ -2,7 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
 
 plugins=(
     zsh-autosuggestions
@@ -44,12 +44,12 @@ alias ls="lsd"
 
 
 bindkey -r ^x
-bindkey -s ^a "tmux a\n"
+#bindkey -s ^a "tmux a\n"
 bindkey -s ^g "lazygit\n"
-bindkey -s ^e "echo fart\n"
 
-bindkey -s ^f 'tmuxifier-sessionizer\n'
-bindkey -s ^n 'new-project tmuxifier load-session dev\n'
+#bindkey -s ^f 'tmuxifier-sessionizer\n'
+bindkey -s ^f "herdr plugin action invoke sessionizer.open\n"
+#bindkey -s ^n 'new-project tmuxifier load-session dev\n'
 
 # bun completions
 [ -s "/home/bduck/.bun/_bun" ] && source "/home/bduck/.bun/_bun"
@@ -124,6 +124,11 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
+
+# oh-my-pi
+eval "$(omp completions zsh)"
+
+eval "$(starship init zsh)"
 
 
 # >>> conda initialize >>>
