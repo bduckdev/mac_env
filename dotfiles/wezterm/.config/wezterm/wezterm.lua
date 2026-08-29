@@ -25,7 +25,7 @@ local config = {
 	hide_mouse_cursor_when_typing = true,
 
 	-- window settings
-	window_background_opacity = 0.6,
+	window_background_opacity = 0.8,
 	macos_window_background_blur = 20,
 	window_close_confirmation = "NeverPrompt",
 	window_padding = {
