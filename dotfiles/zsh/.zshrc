@@ -39,6 +39,7 @@ alias alacrittyconfig="nvim ~/.config/alacritty/"
 alias scripts="nvim ~/.dotfiles/scripts/.local/scripts/"
 alias findfile="fzf --preview 'bat --style=numbers --color=always {}' | xargs -r nvim"
 alias chat="ollama run dolphin-mixtral:latest"
+alias pichat='pi --no-tools --no-extensions --system-prompt "$HOME/.pi/agent/CHAT_SYSTEM.md" --'
 alias ccpp="c++"
 alias runekit="~/Downloads/RuneKit.AppImage 2> /dev/null &"
 alias ls="lsd -a"
