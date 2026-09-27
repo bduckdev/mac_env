@@ -29,17 +29,10 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmuxifier-sessionizer<CR>")
 --vim.keymap.set("n", "<C-n>", "<cmd>silent !tmux neww new-project<CR>")
 
 -- lazygit
--- vim.keymap.set("n", "<C-g>", "<cmd>silent !tmux neww lazygit<CR>")
+--vim.keymap.set("n", "<C-g>", "<cmd>silent !tmux display-popup -E -w 80% -h 80% 'lazygit'<CR>")
 
 -- make executable and run
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
--- go to global todos
-vim.keymap.set("n", "gt", ":e ~/TODOS.md<CR>")
-
--- go back + go foward
-vim.keymap.set("n", "gb", ":bprev<CR>")
-vim.keymap.set("n", "gf", ":bnext<CR>")
 
 vim.api.nvim_create_user_command("Norel", function()
 	vim.opt.relativenumber = false
@@ -49,11 +42,14 @@ vim.api.nvim_create_user_command("Yesrel", function()
 	vim.opt.relativenumber = true
 end, {})
 
-vim.keymap.set("n", "<leader>t", ":tab term<cr>")
-vim.keymap.set("t", "<leader>t", "<c-d>")
+-- tmux should own terminal
+--vim.keymap.set("n", "<leader>t", ":tab term<cr>")
+--vim.keymap.set("t", "<leader>t", "<c-d>")
 
 -- window navigation
 --vim.keymap.set("n", "<C-h>", ":wincmd h<CR>")
 --vim.keymap.set("n", "<C-j>", ":wincmd j<CR>")
 --vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
 --vim.keymap.set("n", "<C-l>", ":wincmd l<CR>")
+--
+vim.keymap.set("n", "<C-\\>", "<C-^>", { desc = "Previous buffer" })

@@ -1,3 +1,7 @@
+local dashboard_image
+local dashboard_image_width = 32
+local dashboard_image_height = 16
+
 return {
 	{
 		"folke/snacks.nvim",
@@ -8,41 +12,101 @@ return {
 			bigfile = { enabled = true },
 			dashboard = {
 				enabled = true,
+				preset = {
+					header = table.concat({
+						[[                                                                     ]],
+						[[       ████ ██████           █████      ██                     ]],
+						[[      ███████████             █████                             ]],
+						[[      █████████ ███████████████████ ███   ███████████   ]],
+						[[     █████████  ███    █████████████ █████ ██████████████   ]],
+						[[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
+						[[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
+						[[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
+					}, "\n"),
+					keys = {
+						{
+							icon = "󰈔 ",
+							key = "<leader>ff",
+							label = "SPC f f",
+							desc = "Find project file",
+							action = ":Telescope find_files hidden=true",
+						},
+						{
+							icon = "󰉋 ",
+							key = "<leader>fd",
+							label = "SPC f d",
+							desc = "Find project directory",
+							action = ":TelescopeFindDirectory",
+						},
+						{
+							icon = " ",
+							key = "<leader>fs",
+							label = "SPC f s",
+							desc = "Live grep",
+							action = ":Telescope live_grep",
+						},
+						{
+							icon = "󰍔 ",
+							key = "<leader>of",
+							label = "SPC o f",
+							desc = "Find Obsidian note",
+							action = function()
+								require("lazy").load({ plugins = { "obsidian.nvim" } })
+								vim.cmd("Obsidian quick_switch")
+							end,
+						},
+						{
+							icon = " ",
+							key = "<leader>ot",
+							label = "SPC o t",
+							desc = "Open today's note",
+							action = function()
+								require("lazy").load({ plugins = { "obsidian.nvim" } })
+								vim.cmd("Obsidian today")
+							end,
+						},
+						{
+							icon = "󰋖 ",
+							key = "<leader><leader>h",
+							label = "SPC SPC h",
+							desc = "Help tags",
+							action = ":Telescope help_tags",
+						},
+						{ icon = " ", key = "q", label = "q", desc = "Quit", action = ":qa" },
+					},
+				},
 				sections = {
 					{
 						pane = 1,
 						{ section = "header" },
 						{
-							text = {
-								{ "  ", hl = "SnacksDashboardIcon" },
-								{ "gibe files", hl = "SnacksDashboardDesc", width = 56 },
-								{ ".", hl = "SnacksDashboardKey" },
-							},
-							action = ":Oil .",
-							key = ".",
-							gap = 1,
-							padding = 1,
+							text = string.rep("\n", dashboard_image_height - 1),
+							render = function(self, pos)
+								if dashboard_image then
+									dashboard_image:close()
+								end
+
+								local row = pos[1]
+								local col = pos[2] + math.floor((self.opts.width - dashboard_image_width) / 2)
+
+								dashboard_image =
+									Snacks.image.placement.new(self.buf, vim.fn.expand("~/Pictures/cat_crying.png"), {
+										pos = { row, col },
+										range = { row, col, row + dashboard_image_height - 1, col },
+										width = dashboard_image_width,
+										height = dashboard_image_height,
+										conceal = true,
+										inline = true,
+										auto_resize = true,
+									})
+							end,
 						},
 						{ section = "keys", gap = 1, padding = 1 },
 						{ section = "startup" },
 					},
-					{
-						section = "terminal",
-						cmd = "pokemon-colorscripts -n giratina -f origin --no-title; sleep .1",
-						--	random = 10,
-						pane = 2,
-						--indent = 4,
-						height = 30,
-					},
-					--{
-					--	section = "terminal",
-					--	cmd = "chafa ~/Pictures/feet-lmao-4_no-bg.png --format symbols --symbols vhalf --stretch",
-					--	pane = 1,
-					--	indent = 4,
-					--	height = 24,
-					--},
 				},
 			},
+			image = { enabled = true },
 			notifier = { enabled = true },
 			quickfile = { enabled = true },
 			statuscolumn = { enabled = true },
@@ -50,19 +114,27 @@ return {
 		},
 		keys = {
 			{
+				"<leader>D",
+				function()
+					Snacks.dashboard()
+				end,
+				desc = "Snacks - Dashboard",
+			},
+			{
 				"<leader>xn",
 				function()
 					Snacks.notifier.show_history()
 				end,
-				desc = "Notification History",
+				desc = "Snacks - Notification History",
 			},
-			{
-				"<C-g>",
-				function()
-					Snacks.lazygit()
-				end,
-				desc = "LazyGit",
-			},
+			-- would use this but it's slow af when hitting space because of leader capture maybe
+			--{
+			--	"<C-g>",
+			--	function()
+			--		Snacks.lazygit()
+			--	end,
+			--	desc = "Snacks - LazyGit",
+			--},
 		},
 	},
 }

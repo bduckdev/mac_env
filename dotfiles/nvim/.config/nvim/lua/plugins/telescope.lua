@@ -9,10 +9,41 @@ return {
 					file_ignore_patterns = { "node_modules/" },
 				},
 			})
-			vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
+			local actions = require("telescope.actions")
+			local action_state = require("telescope.actions.state")
+
+			local function find_directory()
+				builtin.find_files({
+					prompt_title = "Directories",
+					find_command = {
+						"fd",
+						"--type",
+						"d",
+						"--hidden",
+						"--exclude",
+						".git",
+					},
+					attach_mappings = function(prompt_bufnr, map)
+						actions.select_default:replace(function()
+							actions.close(prompt_bufnr)
+
+							local selection = action_state.get_selected_entry()
+							vim.cmd("Oil " .. vim.fn.fnameescape(selection.path))
+						end)
+
+						return true
+					end,
+				})
+			end
+
+			vim.api.nvim_create_user_command("TelescopeFindDirectory", find_directory, {})
+			vim.keymap.set("n", "<leader>fd", "<cmd>TelescopeFindDirectory<CR>", {
+				desc = "Find directory in Oil",
+			})
+			vim.keymap.set("n", "<leader>ff", "<cmd>:Telescope find_files hidden=true<CR>", {})
 			vim.keymap.set("n", "<C-p>", builtin.git_files, {})
-			vim.keymap.set("n", "<leader>ps", builtin.live_grep, {})
-			vim.keymap.set("n", "<leader>pb", builtin.buffers, {})
+			vim.keymap.set("n", "<leader>fs", builtin.live_grep, {})
+			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 			vim.keymap.set("n", "<leader><leader>h", ":Telescope help_tags<CR>")
 		end,
 	},

@@ -180,8 +180,10 @@ return {
 				border = "rounded",
 			},
 		})
-		vim.keymap.set("n", "|", "<CMD>Oil ..<CR>", { desc = "Open parent directory" })
-		vim.keymap.set("n", "\\", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-		vim.keymap.set("n", "pv", "<CMD>Oil<CR>", { desc = "Open file exporer" })
+
+		vim.keymap.set("n", "<leader>pv", "<CMD>Oil .<CR>", { desc = "Oil - Open project directory" })
+		vim.keymap.set("n", "<leader>.", "<CMD>Oil %:p:h<CR>", { desc = "Oil - Open current directory" })
+		vim.keymap.set("n", "\\", "<CMD>Oil %:p:h<CR>", { desc = "Oil - Open current directory" })
+		vim.keymap.set("n", "|", "<CMD>Oil<CR>", { desc = "Oil - Open parent directory" })
 	end,
 }

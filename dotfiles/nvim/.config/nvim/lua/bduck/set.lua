@@ -20,6 +20,18 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
+-- Reload changes made by external tools so they become entries in the undo tree.
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+	group = vim.api.nvim_create_augroup("AutoReloadExternalChanges", { clear = true }),
+	callback = function()
+		if vim.fn.getcmdwintype() == "" then
+			vim.cmd("checktime")
+		end
+	end,
+	desc = "Reload externally modified files",
+})
+
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
@@ -34,4 +46,16 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
+vim.opt.laststatus = 0
+
 vim.opt.showmode = false
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "text", "gitcommit" },
+	callback = function()
+		vim.opt_local.formatoptions:append("t")
+		vim.opt_local.textwidth = 80
+		vim.opt_local.linebreak = true
+		vim.opt_local.spell = true
+	end,
+})

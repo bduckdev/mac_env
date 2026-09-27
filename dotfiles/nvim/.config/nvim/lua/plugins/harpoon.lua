@@ -1,73 +1,102 @@
+local harpoon_tabline_show_hint = false
+
 return {
 	{
-		"theprimeagen/harpoon",
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim", { "echasnovski/mini.icons", opts = {} } },
+
 		config = function()
-			require("harpoon").setup({
-				global_settings = {
-					-- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
-					save_on_toggle = false,
+			local harpoon = require("harpoon")
 
-					-- saves the harpoon file upon every change. disabling is unrecommended.
-					save_on_change = true,
-
-					-- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
-					enter_on_sendcmd = false,
-
-					-- closes any tmux windows harpoon that harpoon creates when you close Neovim.
-					tmux_autoclose_windows = false,
-
-					-- filetypes that you want to prevent from adding to the harpoon list menu.
-					excluded_filetypes = { "harpoon" },
-
-					-- set marks specific to each git branch inside git repository
-					mark_branch = false,
-
-					-- enable tabline with harpoon marks
-					tabline = false,
-					tabline_prefix = "   ",
-					tabline_suffix = "   ",
+			harpoon:setup({
+				settings = {
+					save_on_toggle = true,
+					sync_on_ui_close = true,
 				},
 			})
-			local mark = require("harpoon.mark")
-			local ui = require("harpoon.ui")
 
-			vim.keymap.set("n", "<leader>a", mark.add_file)
-			vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
+			vim.o.tabline = "%!v:lua.HarpoonTabline()"
 
-			vim.keymap.set("n", "<C-h>", function()
-				ui.nav_file(1)
-			end)
-			vim.keymap.set("n", "<C-t>", function()
-				ui.nav_file(2)
-			end)
-			vim.keymap.set("n", "<C-n>", function()
-				ui.nav_file(3)
-			end)
-			vim.keymap.set("n", "<C-s>", function()
-				ui.nav_file(4)
-			end)
+			vim.keymap.set("n", "<leader>a", function()
+				harpoon:list():add()
+				vim.cmd("redrawtabline")
+			end, { desc = "Harpoon - add buffer" })
+
+			vim.keymap.set("n", "<C-e>", function()
+				harpoon.ui:toggle_quick_menu(harpoon:list())
+				vim.cmd("redrawtabline")
+				vim.cmd("redrawtabline")
+			end, { desc = "Harpoon - Menu" })
+
+			vim.keymap.set("n", "<leader>hp", function()
+				harpoon:list():prev({ ui_nav_wrap = true })
+				vim.cmd("redrawtabline")
+			end, { desc = "Harpoon - Switch to previous mark" })
+
+			vim.keymap.set("n", "<leader>hn", function()
+				harpoon:list():next({ ui_nav_wrap = true })
+				vim.cmd("redrawtabline")
+			end, { desc = "Harpoon - Switch to next mark" })
+
+			-- Keys to navigate between marks
+			local harpoon_mark_keys = { "<C-h>", "<C-t>", "<C-n>", "<C-s>" }
+
+			local function harpoon_mark_bind(keybind, tag_idx)
+				return vim.keymap.set("n", keybind, function()
+					harpoon:list():select(tag_idx)
+					vim.cmd("redrawtabline")
+				end, { desc = "Harpoon - Switch to tag " .. tag_idx })
+			end
+
+			for i, key in ipairs(harpoon_mark_keys) do
+				harpoon_mark_bind(key, i)
+			end
+
+			-- Setup tabline
+			vim.o.showtabline = 2
+
+			_G.HarpoonTabline = function()
+				local list = harpoon:list()
+				local current = vim.fn.expand("%:p")
+				local parts = {}
+				local icons = require("mini.icons")
+
+				for i, item in ipairs(list.items) do
+					if item.value and item.value ~= "" then
+						local fullpath = vim.fn.fnamemodify(item.value, ":p")
+						local name = vim.fn.fnamemodify(item.value, ":t")
+
+						local icon = icons.get("file", fullpath)
+
+						-- Escape % because tabline treats it specially
+						name = name:gsub("%%", "%%%%")
+
+						-- Highlights from lualine
+						local hl = fullpath == current and "%#lualine_a_normal#" or "%#lualine_c_normal#"
+
+						if i <= #harpoon_mark_keys and harpoon_tabline_show_hint then
+							local key_label = harpoon_mark_keys[i]:match("([%w])[^%w]*$")
+							table.insert(parts, string.format("%s %s: %s %s ", hl, harpoon_mark_keys[i], icon, name))
+						else
+							table.insert(parts, string.format("%s %s %s ", hl, icon, name))
+						end
+					end
+				end
+
+				table.insert(parts, "%#TabLineFill#%=")
+
+				return table.concat(parts)
+			end
+
 			vim.api.nvim_set_hl(0, "HarpoonWindow", { link = "Normal" })
 			vim.api.nvim_set_hl(0, "HarpoonBorder", { link = "Normal" })
-		end,
-	},
-	{
-		"kdheepak/tabline.nvim",
-		config = function()
-			require("tabline").setup({
-				-- Defaults configuration options
-				enable = false,
-				options = {
-					-- If lualine is installed tabline will use separators configured in lualine by default.
-					-- These options can be used to override those settings.
-					max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
-					show_tabs_always = false, -- this shows tabs only when there are more than one tab or if the first tab is named
-					show_devicons = true, -- this shows devicons in buffer section
-					show_bufnr = false, -- this appends [bufnr] to buffer section,
-					show_filename_only = false, -- shows base filename only instead of relative path in filename
-					modified_icon = "+ ", -- change the default modified icon
-					modified_italic = false, -- set to true by default; this determines whether the filename turns italic if modified
-					show_tabs_only = false, -- this shows only tabs instead of tabs + buffers
-				},
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "SnacksDashboardOpened",
+				callback = function()
+					vim.o.showtabline = 2
+					vim.o.laststatus = 0
+				end,
 			})
 		end,
 	},
