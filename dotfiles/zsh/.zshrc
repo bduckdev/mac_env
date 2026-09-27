@@ -27,6 +27,7 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+alias vi="nvim"
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias i3config="cd ~/.config/i3 && nvim ."
@@ -40,16 +41,21 @@ alias findfile="fzf --preview 'bat --style=numbers --color=always {}' | xargs -r
 alias chat="ollama run dolphin-mixtral:latest"
 alias ccpp="c++"
 alias runekit="~/Downloads/RuneKit.AppImage 2> /dev/null &"
-alias ls="lsd"
+alias ls="lsd -a"
+alias ll="lsd -la"
+alias ot="nvim -c 'Obsidian today'"
+alias og="nvim '~/Documents/obsidian/5 - Main Notes/GOALS.md'"
+alias of="nvim -c 'Obsidian quick_switch'"
+alias ta="tmux a"
 
 
 bindkey -r ^x
 #bindkey -s ^a "tmux a\n"
-bindkey -s ^g "lazygit\n"
+#bindkey -s ^g "lazygit\n"
 
-#bindkey -s ^f 'tmuxifier-sessionizer\n'
-bindkey -s ^f "herdr plugin action invoke sessionizer.open\n"
-#bindkey -s ^n 'new-project tmuxifier load-session dev\n'
+bindkey -s ^f 'tmuxifier-sessionizer\n'
+#bindkey -s ^f "herdr plugin action invoke sessionizer.open\n"
+bindkey -s ^n 'new-project tmuxifier load-session dev\n'
 
 # bun completions
 [ -s "/home/bduck/.bun/_bun" ] && source "/home/bduck/.bun/_bun"
@@ -87,25 +93,27 @@ export PATH=$PATH:/usr/local/go/bin
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
---margin="8,10,8,10" --padding="1" --border="rounded" --preview-window="border-rounded"
-'
+ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+ --margin="0,0,0,0" --padding="1" --border="rounded" --preview-window="border-rounded"
+ '
 
 eval "$(zoxide init zsh)"
+#
 # study stream aliases
-# Requires https://github.com/caarlos0/timer to be installed. spd-say should ship with your distro
 
 declare -A pomo_options
-pomo_options["work"]="25"
-pomo_options["break"]="5"
+pomo_options["work"]="25m"
+pomo_options["break"]="5m"
+pomo_options["test"]="5s"
 
 pomodoro () {
   if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
   val=$1
   echo $val | lolcat
-  timer ${pomo_options["$val"]}
-  spd-say "'$val' session done"
-  notify-send "'$val' session done"
+  countdown ${pomo_options["$val"]}
+  say "'$val' session done"
+ # spd-say "'$val' session done"
+ # notify-send "'$val' session done"
   fi
 }
 
@@ -115,6 +123,7 @@ alias br="pomodoro 'break'"
 # tmuxifier
 export PATH=$PATH:$HOME/.tmux/plugins/tmuxifier/bin
 export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
+export TMUXIFIER_NO_COMPLETE=1
 eval "$(tmuxifier init -)"
 
 #echo "use z instead of cd"
@@ -126,7 +135,7 @@ export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 
 # oh-my-pi
-eval "$(omp completions zsh)"
+#eval "$(omp completions zsh)"
 
 eval "$(starship init zsh)"
 
@@ -148,6 +157,8 @@ unset __conda_setup
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+##THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+#export SDKMAN_DIR="$HOME/.sdkman"
+#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+#
+#
