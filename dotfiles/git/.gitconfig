@@ -19,6 +19,9 @@
 [delta "decorations"]
     syntax-theme = cyberdream
 
+[diff]
+    tool = nvimdiff
+
 [merge]
     conflictStyle = zdiff3
 
