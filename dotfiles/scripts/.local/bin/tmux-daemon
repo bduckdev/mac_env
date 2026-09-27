@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if ! tmux list-sessions | grep "main" &>/dev/null; then
-	echo "Creating new tmux session"
-	tmux new-session -d -s main
+if ! tmux has-session -t main 2>/dev/null; then
+    echo "Creating new tmux session"
+    tmuxifier load-session main
 else
-	echo "Main session exists. doing nothing"
+    echo "Main session exists. doing nothing"
 fi
