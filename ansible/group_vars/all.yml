@@ -59,6 +59,7 @@ stow_packages:
   - lazygit
   - herdr
   - ghostty
+  - pi
 
 work_dirs:
   - "{{ ansible_env.HOME }}/Work"
