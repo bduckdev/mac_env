@@ -2,8 +2,7 @@ session_root ~/mac_env
 
 if initialize_session main; then
 	new_window "editor"
-	run_cmd 'sleep 0.1'
-	run_cmd 'while nvim; do :; done'
+	run_cmd "exec zsh -f -c 'while nvim; do true; done'"
 	select_pane 0
 
 	new_window "shell"
