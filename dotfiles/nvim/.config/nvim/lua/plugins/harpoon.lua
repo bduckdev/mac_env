@@ -94,8 +94,7 @@ return {
 			vim.api.nvim_create_autocmd("User", {
 				pattern = "SnacksDashboardOpened",
 				callback = function()
-					vim.o.showtabline = 2
-					vim.o.laststatus = 0
+					vim.o.showtabline, vim.o.laststatus = 2, 2
 				end,
 			})
 		end,
