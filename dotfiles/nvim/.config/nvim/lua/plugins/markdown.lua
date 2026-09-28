@@ -6,19 +6,11 @@ return {
 		config = function()
 			local opts = {
 				legacy_commands = false, -- this will be removed in 4.0.0
-				--	callbacks = {
-				--		enter_note = function(ev)
-				--			-- remove the default mappings
-				--			vim.keymap.del("n", "<CR>", { buffer = true })
-				--			vim.keymap.del("n", "]o", { buffer = true })
-				--			vim.keymap.del("n", "[o", { buffer = true })
-
-				--			-- add your own
-				--			vim.keymap.set("n", "<leader><CR>", require("obsidian.api").smart_action, { buffer = true })
-				--			vim.keymap.del("n", "]l", { buffer = true })
-				--			vim.keymap.del("n", "[l", { buffer = true })
-				--		end,
-				--	},
+				callbacks = {
+					enter_note = function(ev)
+						vim.opt_local.conceallevel = 2
+					end,
+				},
 				workspaces = {
 					{
 						name = "vault",

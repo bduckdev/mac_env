@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
---vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -26,10 +25,6 @@ vim.keymap.set("n", "<leader><leader>s", [[:,$s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Lef
 
 -- tmux-sessionizer
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmuxifier-sessionizer<CR>")
---vim.keymap.set("n", "<C-n>", "<cmd>silent !tmux neww new-project<CR>")
-
--- lazygit
---vim.keymap.set("n", "<C-g>", "<cmd>silent !tmux display-popup -E -w 80% -h 80% 'lazygit'<CR>")
 
 -- make executable and run
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
@@ -41,15 +36,4 @@ end, {})
 vim.api.nvim_create_user_command("Yesrel", function()
 	vim.opt.relativenumber = true
 end, {})
-
--- tmux should own terminal
---vim.keymap.set("n", "<leader>t", ":tab term<cr>")
---vim.keymap.set("t", "<leader>t", "<c-d>")
-
--- window navigation
---vim.keymap.set("n", "<C-h>", ":wincmd h<CR>")
---vim.keymap.set("n", "<C-j>", ":wincmd j<CR>")
---vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
---vim.keymap.set("n", "<C-l>", ":wincmd l<CR>")
---
 vim.keymap.set("n", "<C-\\>", "<C-^>", { desc = "Previous buffer" })
