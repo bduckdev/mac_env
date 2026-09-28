@@ -11,10 +11,6 @@ if initialize_session "${SESSION_NAME}"; then
 
 	new_window "agent"
 	run_cmd "pi"
-	if [ -d "${SESSION_DIR}"/.git ]; then
-		split_h 10
-		run_cmd "lazygit"
-	fi
 	select_pane 0
 
 	select_window 3
