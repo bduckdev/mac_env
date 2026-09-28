@@ -1,6 +1,8 @@
-session_root "${TS_DIR}"
+session_root "${SESSION_DIR}"
 
-if initialize_session "${TS_NAME}"; then
+SESSION_NAME=$(basename "$SESSION_DIR" | tr '. ' '__')
+
+if initialize_session "${SESSION_NAME}"; then
 	new_window "editor"
 	run_cmd "exec zsh -f -c 'while nvim; do true; done'"
 	select_pane 0
@@ -8,17 +10,12 @@ if initialize_session "${TS_NAME}"; then
 	new_window "shell"
 
 	new_window "agent"
-	run_cmd "opencode"
-	if [ -d ${TS_DIR}/.git ]; then
+	run_cmd "pi"
+	if [ -d "${SESSION_DIR}"/.git ]; then
 		split_h 10
 		run_cmd "lazygit"
 	fi
 	select_pane 0
-
-	new_window "server"
-	if grep -qE '^dev *:' ${TS_DIR}/Makefile; then
-		run_cmd "make dev"
-	fi
 
 	select_window 3
 fi
