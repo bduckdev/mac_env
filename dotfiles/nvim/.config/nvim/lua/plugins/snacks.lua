@@ -79,28 +79,28 @@ return {
 					{
 						pane = 1,
 						{ section = "header" },
-						{
-							text = string.rep("\n", dashboard_image_height - 1),
-							render = function(self, pos)
-								if dashboard_image then
-									dashboard_image:close()
-								end
+						--{
+						--	text = string.rep("\n", dashboard_image_height - 1),
+						--	render = function(self, pos)
+						--		if dashboard_image then
+						--			dashboard_image:close()
+						--		end
 
-								local row = pos[1]
-								local col = pos[2] + math.floor((self.opts.width - dashboard_image_width) / 2)
+						--		local row = pos[1]
+						--		local col = pos[2] + math.floor((self.opts.width - dashboard_image_width) / 2)
 
-								dashboard_image =
-									Snacks.image.placement.new(self.buf, vim.fn.expand("~/Pictures/cat_crying.png"), {
-										pos = { row, col },
-										range = { row, col, row + dashboard_image_height - 1, col },
-										width = dashboard_image_width,
-										height = dashboard_image_height,
-										conceal = true,
-										inline = true,
-										auto_resize = true,
-									})
-							end,
-						},
+						--		dashboard_image =
+						--			Snacks.image.placement.new(self.buf, vim.fn.expand("~/Pictures/cat_crying.png"), {
+						--				pos = { row, col },
+						--				range = { row, col, row + dashboard_image_height - 1, col },
+						--				width = dashboard_image_width,
+						--				height = dashboard_image_height,
+						--				conceal = true,
+						--				inline = true,
+						--				auto_resize = true,
+						--			})
+						--	end,
+						--},
 						{ section = "keys", gap = 1, padding = 1 },
 						{ section = "startup" },
 					},
