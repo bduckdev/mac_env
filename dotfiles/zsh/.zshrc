@@ -48,6 +48,7 @@ alias ot="nvim -c 'Obsidian today'"
 alias og="nvim '~/Documents/obsidian/5 - Main Notes/GOALS.md'"
 alias of="nvim -c 'Obsidian quick_switch'"
 alias ta="tmux a"
+alias tm="SESSION_DIR=~/mac_env tmuxifier load-session dev"
 
 
 bindkey -r ^x
@@ -94,9 +95,9 @@ export PATH=$PATH:/usr/local/go/bin
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
- export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
- --margin="0,0,0,0" --padding="1" --border="rounded" --preview-window="border-rounded"
- '
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+# --margin="0,0,0,0" --padding="1" --border="rounded" --preview-window="border-rounded"
+# '
 
 eval "$(zoxide init zsh)"
 #
