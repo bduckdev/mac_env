@@ -1,7 +1,6 @@
 after-startup-command = [
   # "exec-and-forget ~/.local/bin/startup",
-  "exec-and-forget tmux new-session -d -s main",
-  "exec-and-forget open -a 'WezTerm'",
+  "exec-and-forget ghostty -e zsh -lic 'SESSION_DIR=~/mac_env tmuxifier load-session dev'"
 ]
 #exec-on-workspace-change = [
 #  "/bin/bash",
@@ -33,6 +32,7 @@ outer.right = 2
 
 [mode.main.binding]
 alt-enter = "exec-and-forget open -na Ghostty"
+alt-shift-enter = "exec-and-forget ghostty -e zsh -lic 'SESSION_DIR=~/mac_env tmuxifier load-session dev'"
 alt-slash = "layout tiles horizontal vertical"
 alt-period = "layout accordion horizontal vertical"
 alt-h = "focus left"
