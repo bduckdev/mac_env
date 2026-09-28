@@ -6,17 +6,26 @@ else
 	if [[ $# -eq 1 ]]; then
 		selected=$1
 	else
-		selected=$(find ~ ~/Work ~/Personal ~/School ~/Playground -mindepth 1 -maxdepth 1 -type d | fzf \
-			--header='Enter: open project | Ctrl-M: main session' \
-			--bind='tab:become(tmux attach-session -t main)+abort')
+		selected=$(
+			{
+				echo ~/mac_env
+				echo ~/Work
+				echo ~/Personal
+				echo ~/School
+				echo ~/Playground
+				fd --type d --min-depth 1 --max-depth 1 . \
+					~/Work \
+					~/Personal \
+					~/School \
+					~/Playground
+			} | fzf
+		)
 	fi
 
 	[[ -z $selected ]] && exit 0
 
-	selected_name=$(basename "$selected" | tr '. ' '__')
-
 	if ! tmux has-session -t "$selected" 2>/dev/null; then
-		TS_DIR="$selected" TS_NAME="$selected_name" tmuxifier load-session dev
+		SESSION_DIR="$selected" tmuxifier load-session dev
 	else
 		tmux switch-client -t "$selected"
 	fi
