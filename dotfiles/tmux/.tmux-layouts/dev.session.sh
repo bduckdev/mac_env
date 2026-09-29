@@ -16,4 +16,8 @@ if initialize_session "${SESSION_NAME}"; then
 	select_window 3
 fi
 
+if [[ -n "$TMUX_START_WINDOW" ]]; then
+	tmux select-window -t "$TMUX_START_WINDOW"
+fi
+
 finalize_and_go_to_session
