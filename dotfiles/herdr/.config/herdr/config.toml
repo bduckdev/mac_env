@@ -6,8 +6,6 @@ onboarding = false
 [keys]
 # Prefix (tmux: set-option -g prefix C-a)
 prefix = "ctrl+a"
-workspace_picker = ""
-goto = ""
 
 # Reload config (tmux: bind r source-file ~/.tmux.conf)
 #reload_config = "prefix+r"
@@ -53,12 +51,12 @@ resize_pane_up = "prefix+shift+k"
 resize_pane_right = "prefix+shift+l"
 
 [[keys.command]]
-key = "prefix+w"
+key = "ctrl+g"
 type = "popup"
-command = "herdr-session-picker"
-description = "choose session or window"
-width = "70%"
-height = "70%"
+command = "lazygit"
+description = "lazygit"
+width = "80%"
+height = "80%"
 
 [[keys.command]]
 key = "prefix+b"
@@ -111,44 +109,6 @@ tab_bar_right = [
 ]
 
 tab_bar_right_separator = " · "
-
-# Terminal annotations
-[[keys.command]]
-key = "prefix+a"
-type = "plugin_action"
-command = "annotate.capture"
-description = "annotate text"
-
-[[keys.command]]
-key = "prefix+shift+a"
-type = "plugin_action"
-command = "annotate.copy-context"
-description = "copy annotations as context"
-
-[[keys.command]]
-key = "prefix+ctrl+a"
-type = "plugin_action"
-command = "annotate.copy-archive"
-description = "copy annotations as context and archive them"
-
-[[keys.command]]
-key = "prefix+m"
-type = "plugin_action"
-command = "annotate.manage"
-description = "manage annotations"
-
-# Document review (plannotator-tui)
-[[keys.command]]
-key = "prefix+o"
-type = "plugin_action"
-command = "annotate.open"
-description = "review documents in this folder"
-
-[[keys.command]]
-key = "prefix+shift+o"
-type = "plugin_action"
-command = "annotate.last"
-description = "review the agent's last reply"
 
 [[keys.command]]
 key = "prefix+f"
