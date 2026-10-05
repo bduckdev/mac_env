@@ -1,6 +1,6 @@
 # font
 font-family = JetBrainsMono NFM
-font-size = 18
+font-size = 16
 adjust-cell-height = 15%
 
 # cyberdream
@@ -35,3 +35,14 @@ window-padding-x = 16
 window-padding-y = 24,12
 confirm-close-surface = false
 cursor-style = "block"
+
+# give super number to tmux
+keybind = super+1=esc:1
+keybind = super+2=esc:2
+keybind = super+3=esc:3
+keybind = super+4=esc:4
+keybind = super+5=esc:5
+keybind = super+6=esc:6
+keybind = super+7=esc:7
+keybind = super+8=esc:8
+keybind = super+9=esc:9
