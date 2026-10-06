@@ -83,7 +83,7 @@ async function ensureServer() {
   let list = tryWorkspaceList();
   if (list) return { started: false, list };
 
-  const server = Bun.spawn(["/usr/bin/nohup", ...herdr, "server"], {
+  const server = Bun.spawn(["nohup", ...herdr, "server"], {
     cwd: projectPath,
     stdin: "ignore",
     stdout: "ignore",
