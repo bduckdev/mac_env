@@ -14,10 +14,11 @@ prefix = "ctrl+a"
 ## --- tmux default bindings ---
 help = "prefix+?"              # tmux: ?  list keys
 new_tab = "prefix+c"           # tmux: c  new window
+new_workspace = ""              # free prefix+shift+n for notifications
 #rename_tab = "prefix+comma"    # tmux: ,  rename window
 #close_tab = "prefix+ampersand" # tmux: &  kill window
-previous_tab = "prefix+p"      # tmux: p  previous window
-next_tab = "prefix+n"          # tmux: n  next window
+previous_agent = "prefix+p"
+next_agent = "prefix+n"
 switch_tab = "prefix+1..9"     # tmux: 1-9  select window
 split_vertical = 'prefix+%'    # tmux: %  split side-by-side
 split_horizontal = 'prefix+"'  # tmux: "  split stacked
@@ -25,9 +26,10 @@ close_pane = "prefix+x"        # tmux: x  kill pane
 zoom = "prefix+z"              # tmux: z  zoom pane
 toggle_sidebar = "prefix+backtick"
 detach = "prefix+d"            # tmux: d  detach
-#cycle_pane_next = "prefix+o"   # tmux: o  next pane
+cycle_pane_next = ""            # free prefix+tab from the default pane cycle
+last_pane = "prefix+tab"         # global MRU toggle between the last two panes
 #copy_mode = "prefix+["         # tmux: [  copy mode
-#open_notification_target = "prefix+shift+o" # moved off prefix+o for cycle_pane_next
+open_notification_target = "prefix+shift+n" # prefix+o is used by Obsidian
 #
 # --- pane movement (tmux: bind h/j/k/l select-pane) ---
 focus_pane_left = "prefix+h"
@@ -51,10 +53,34 @@ resize_pane_up = "prefix+shift+k"
 resize_pane_right = "prefix+shift+l"
 
 [[keys.command]]
-key = "ctrl+g"
+key = "prefix+g"
 type = "popup"
 command = "lazygit"
 description = "lazygit"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+shift+d"
+type = "popup"
+command = "lazydocker"
+description = "lazydocker"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "zsh"
+description = "quick terminal"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+o"
+type = "popup"
+command = "nvim -c 'Obsidian today'"
+description = "Obsidian daily note"
 width = "80%"
 height = "80%"
 

@@ -49,6 +49,7 @@ alias og="nvim '~/Documents/obsidian/5 - Main Notes/GOALS.md'"
 alias of="nvim -c 'Obsidian quick_switch'"
 alias ta="tmux a"
 alias tm="TMUX_START_WINDOW=3 SESSION_DIR=~/mac_env tmuxifier load-session dev"
+alias hm='herdr-project "$HOME/mac_env"'
 
 
 bindkey -r ^x
