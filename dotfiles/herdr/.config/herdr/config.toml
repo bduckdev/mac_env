@@ -26,8 +26,8 @@ close_pane = "prefix+x"        # tmux: x  kill pane
 zoom = "prefix+z"              # tmux: z  zoom pane
 toggle_sidebar = "prefix+backtick"
 detach = "prefix+d"            # tmux: d  detach
-cycle_pane_next = ""            # free prefix+tab from the default pane cycle
-last_pane = "prefix+tab"         # global MRU toggle between the last two panes
+cycle_pane_next = ""            # disable the default prefix+tab pane cycle
+last_pane = "ctrl+tab"           # global MRU toggle between the last two panes
 #copy_mode = "prefix+["         # tmux: [  copy mode
 open_notification_target = "prefix+shift+n" # prefix+o is used by Obsidian
 #
