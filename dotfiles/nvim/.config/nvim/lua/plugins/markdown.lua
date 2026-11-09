@@ -1,5 +1,14 @@
 return {
 	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && yarn install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	},
+	{
 		"obsidian-nvim/obsidian.nvim",
 		version = "*", -- use latest release, remove to use latest commit
 		---@module 'obsidian'
@@ -20,8 +29,12 @@ return {
 				daily_notes = {
 					enabled = true,
 					folder = "7 - Daily Notes",
-					template = "4 - Templates/Daily Note",
+					template = "Daily Note",
 					default_tags = { "daily" },
+				},
+				templates = {
+					folder = "4 - Templates",
+					date_format = "dddd, MMMM D, YYYY",
 				},
 			}
 			require("obsidian").setup(opts)
