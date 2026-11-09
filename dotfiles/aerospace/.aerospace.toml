@@ -1,6 +1,6 @@
 after-startup-command = [
   # "exec-and-forget ~/.local/bin/startup",
-  "exec-and-forget ghostty -e zsh -lic 'SESSION_DIR=~/mac_env tmuxifier load-session dev'"
+  "exec-and-forget kitty -e zsh -lic 'SESSION_DIR=~/mac_env tmuxifier load-session dev'"
 ]
 #exec-on-workspace-change = [
 #  "/bin/bash",
@@ -22,16 +22,16 @@ automatically-unhide-macos-hidden-apps = true
 preset = "qwerty"
 
 [gaps]
-inner.horizontal = 4
-inner.vertical = 4
-outer.left = 4
-outer.bottom = 4
-outer.top = 4
-outer.right = 4
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 8
+outer.bottom = 8
+outer.top = 8
+outer.right = 8
 
 [mode.main.binding]
-alt-enter = "exec-and-forget open -na Ghostty"
-alt-shift-enter = "exec-and-forget ghostty -e zsh -lic 'SESSION_DIR=~/mac_env tmuxifier load-session dev'"
+alt-enter = "exec-and-forget open -na Kitty"
+alt-shift-enter = "exec-and-forget kitty -e zsh -lic 'SESSION_DIR=~/mac_env tmuxifier load-session dev'"
 alt-slash = "layout tiles horizontal vertical"
 alt-period = "layout accordion horizontal vertical"
 alt-f="fullscreen"
@@ -160,7 +160,7 @@ run = "move-node-to-workspace 5"
 if.app-id = "com.goodnotesapp.x"
 run = "move-node-to-workspace 5"
 
-# Workspace 6 - Duet
+# Workspace 6 - Misc
 [[on-window-detected]]
 if.app-id = "com.kairos.duetMac"
 run = ["layout floating", "move-node-to-workspace 6"]
@@ -176,38 +176,38 @@ run = ["layout floating", "move-node-to-workspace 6"]
 [[on-window-detected]]
 if.app-id = "com.apple.Passwords"
 run = ["layout floating", "move-node-to-workspace 6"]
+[[on-window-detected]]
+if.app-id = "ch.protonvpn.mac"
+run = ["layout floating", "move-node-to-workspace 6"]
 
 
-# Workspace 7 - Misc
+# Workspace 8 - Virtualization
 [[on-window-detected]]
 if.app-id = "com.utmapp.UTM"
 run = ["move-node-to-workspace 7"]
 [[on-window-detected]]
-if.app-id = "ch.protonvpn.mac"
-run = ["layout floating", "move-node-to-workspace 7"]
+if.app-id = "com.amazon.workspaces"
+run = ["move-node-to-workspace 8"]
+
+# Workspace 9 - Communication
 [[on-window-detected]]
 if.app-id = "com.apple.FaceTime"
-run = ["layout floating", "move-node-to-workspace 7"]
-[[on-window-detected]]
-if.app-id = "com.amazon.workspaces"
-run = ["move-node-to-workspace 7"]
-
-# Workspace 8 - Communication
+run = ["layout floating", "move-node-to-workspace 9"]
 [[on-window-detected]]
 if.app-id = "com.apple.MobileSMS"
-run = ["layout floating", "move-node-to-workspace 8"]
+run = ["layout floating", "move-node-to-workspace 9"]
 [[on-window-detected]]
 if.app-id = "ru.keepcoder.Telegram"
-run = ["layout floating", "move-node-to-workspace 8"]
+run = ["layout floating", "move-node-to-workspace 9"]
 [[on-window-detected]]
 if.app-id = "com.microsoft.teams2"
-run = "move-node-to-workspace 8"
+run = "move-node-to-workspace 9"
 [[on-window-detected]]
 if.app-id = "com.hnc.Discord"
-run = "move-node-to-workspace 8"
+run = "move-node-to-workspace 9"
 [[on-window-detected]]
 if.app-id = "com.tinyspeck.slackmacgap"
-run = "move-node-to-workspace 8"
+run = "move-node-to-workspace 9"
 
 
 # Workspace 10 - Music
