@@ -39,7 +39,7 @@
 ;;Slight breathing room between lines
 (setq-default line-spacing 0.08)
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-ayu-dark)
 (setq doom-font
       (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 
@@ -136,3 +136,8 @@
 ;; where neither after-make-frame-functions nor window-setup-hook fires.
 (when (display-graphic-p)
   (my/apply-frame-transparency))
+
+(use-package! claude-code-ide
+  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+  :config
+  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
