@@ -120,7 +120,7 @@ peach = "#ffbd5e"        # orange
 mauve = "#bd5eff"        # purple
 
 [ui.toast]
-delivery = "herdr"
+delivery = "system"
 
 [ui]
 right_click_passthrough_modifier = "ctrl"
@@ -147,3 +147,6 @@ key = "prefix+up"
 type = "plugin_action"
 command = "sessionizer.worktree-open"
 description = "open worktree workspace"
+
+[experimental]
+kitty_graphics = true
