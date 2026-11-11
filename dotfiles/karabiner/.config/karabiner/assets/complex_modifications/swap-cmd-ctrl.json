@@ -1,8 +1,8 @@
 {
-  "title": "Swap Command and Control (except in terminals)",
+  "title": "Swap Command and Control (except in specified apps)",
   "rules": [
     {
-      "description": "Swap Cmd and Ctrl everywhere except Ghostty and Kitty",
+      "description": "Swap Cmd and Ctrl everywhere except in certain apps",
       "manipulators": [
         {
           "type": "basic",
@@ -16,7 +16,10 @@
               "type": "frontmost_application_unless",
               "bundle_identifiers": [
                 "^com\\.mitchellh\\.ghostty$",
-                "^net\\.kovidgoyal\\.kitty$"
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.github\\.wez\\.wezterm$",
+                "^org\\.gnu\\.Emacs",
+                "^com\\.amazon\\.workspaces$"
               ]
             }
           ]
@@ -33,7 +36,10 @@
               "type": "frontmost_application_unless",
               "bundle_identifiers": [
                 "^com\\.mitchellh\\.ghostty$",
-                "^net\\.kovidgoyal\\.kitty$"
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.github\\.wez\\.wezterm$",
+                "^org\\.gnu\\.Emacs",
+                "^com\\.amazon\\.workspaces$"
               ]
             }
           ]
@@ -50,7 +56,9 @@
               "type": "frontmost_application_unless",
               "bundle_identifiers": [
                 "^com\\.mitchellh\\.ghostty$",
-                "^net\\.kovidgoyal\\.kitty$"
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.github\\.wez\\.wezterm$",
+                "^com\\.amazon\\.workspaces$"
               ]
             }
           ]
@@ -67,7 +75,10 @@
               "type": "frontmost_application_unless",
               "bundle_identifiers": [
                 "^com\\.mitchellh\\.ghostty$",
-                "^net\\.kovidgoyal\\.kitty$"
+                "^net\\.kovidgoyal\\.kitty$",
+                "^com\\.github\\.wez\\.wezterm$",
+                "^org\\.gnu\\.Emacs",
+                "^com\\.amazon\\.workspaces$"
               ]
             }
           ]

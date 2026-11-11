@@ -3,3 +3,4 @@ node_modules/
 .claude/worktrees/
 WORKING_CONTEXT.md
 dotfiles/scripts/.local/bin/plannotator
+dotfiles/karabiner/.config/karabiner/automatic_backups/

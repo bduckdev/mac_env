@@ -60,6 +60,7 @@ stow_packages:
   - herdr
   - ghostty
   - pi
+  - karabiner
 
 work_dirs:
   - "{{ ansible_env.HOME }}/Work"
